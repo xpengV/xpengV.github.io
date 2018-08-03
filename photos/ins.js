@@ -117,8 +117,8 @@
         var liTmpl = "";
         for (var i = 0, len = data.link.length; i < len; i++) {
 	  //相册从github获取时需要作如下操作 https://raw.githubusercontent.com/lawlite19/blog-back-up/master/photos/
-          var minSrc = 'https://raw.githubusercontent.com/xpengV/Blog_backup/master/source/photos_resource/' + data.link[i] + '.jpg';  //去指定目录加载所有图片
-          var src =    'https://raw.githubusercontent.com/xpengV/Blog_backup/master/source/photos_resource/' + data.link[i];
+          var minSrc = 'https://raw.githubusercontent.com/xpengV/BlogNoun/master/source/photos_resource/' + data.link[i] + '.jpg';  //去指定目录加载所有图片
+          var src =    'https://raw.githubusercontent.com/xpengV/BlogNoun/master/source/photos_resource/' + data.link[i];
           var type = data.type[i];
           var target = src + (type === 'video' ? '.mp4' : '.jpg');
           src += '.jpg';
