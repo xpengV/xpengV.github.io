@@ -8,13 +8,13 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>hexo+github+yilia+域名搭建博客 | 肖鹏</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="使用hexo搭建一个拥有自己域名的博客是一件很炫酷的事情~~~，这个端午节花一个小时搭建自己的博客岂不美哉！我的博客 步骤 安装Node.js/Git/Hexo 初始化 创建仓库 添加ssh key到github 发布文章   安装主题 添加相册功能 网银云音乐外链 绑定个人域名 畅言评论功能">
+  <meta name="description" content="使用hexo搭建一个拥有自己域名的博客是一件很炫酷的事情~~~，这个端午节花一个小时搭建自己的博客岂不美哉！我的博客 步骤 安装Node.js/Git/Hexo 初始化 创建代码仓库 添加ssh key到github 发布文章   安装主题 添加相册功能 网银云音乐外链 绑定个人域名 畅言评论功能">
 <meta name="keywords" content="博客搭建">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hexo+github+yilia+域名搭建博客">
 <meta property="og:url" content="http://yoursite.com/2018/06/12/hexo-github搭建博客/index.html">
 <meta property="og:site_name" content="肖鹏">
-<meta property="og:description" content="使用hexo搭建一个拥有自己域名的博客是一件很炫酷的事情~~~，这个端午节花一个小时搭建自己的博客岂不美哉！我的博客 步骤 安装Node.js/Git/Hexo 初始化 创建仓库 添加ssh key到github 发布文章   安装主题 添加相册功能 网银云音乐外链 绑定个人域名 畅言评论功能">
+<meta property="og:description" content="使用hexo搭建一个拥有自己域名的博客是一件很炫酷的事情~~~，这个端午节花一个小时搭建自己的博客岂不美哉！我的博客 步骤 安装Node.js/Git/Hexo 初始化 创建代码仓库 添加ssh key到github 发布文章   安装主题 添加相册功能 网银云音乐外链 绑定个人域名 畅言评论功能">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/img/博客搭建/001.png">
 <meta property="og:image" content="http://yoursite.com/img/博客搭建/002.png">
@@ -31,10 +31,10 @@
 <meta property="og:image" content="http://yoursite.com/img/博客搭建/014.png">
 <meta property="og:image" content="http://yoursite.com/img/博客搭建/015.png">
 <meta property="og:image" content="http://yoursite.com/img/博客搭建/016.png">
-<meta property="og:updated_time" content="2018-07-14T13:45:25.857Z">
+<meta property="og:updated_time" content="2018-09-19T02:38:48.854Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo+github+yilia+域名搭建博客">
-<meta name="twitter:description" content="使用hexo搭建一个拥有自己域名的博客是一件很炫酷的事情~~~，这个端午节花一个小时搭建自己的博客岂不美哉！我的博客 步骤 安装Node.js/Git/Hexo 初始化 创建仓库 添加ssh key到github 发布文章   安装主题 添加相册功能 网银云音乐外链 绑定个人域名 畅言评论功能">
+<meta name="twitter:description" content="使用hexo搭建一个拥有自己域名的博客是一件很炫酷的事情~~~，这个端午节花一个小时搭建自己的博客岂不美哉！我的博客 步骤 安装Node.js/Git/Hexo 初始化 创建代码仓库 添加ssh key到github 发布文章   安装主题 添加相册功能 网银云音乐外链 绑定个人域名 畅言评论功能">
 <meta name="twitter:image" content="http://yoursite.com/img/博客搭建/001.png">
   
   
@@ -189,7 +189,7 @@
 <h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><ol>
 <li>安装Node.js/Git/Hexo</li>
 <li>初始化<ul>
-<li>创建仓库</li>
+<li>创建代码仓库</li>
 <li>添加ssh key到github</li>
 <li>发布文章</li>
 </ul>
@@ -214,49 +214,34 @@
 <h2 id="2-1、创建代码仓库"><a href="#2-1、创建代码仓库" class="headerlink" title="2.1、创建代码仓库"></a>2.1、创建代码仓库</h2><p>注册<a href="https://www.github.com" target="_blank" rel="noopener">github</a>账号，新建仓库，命名为<strong>用户名.github.io</strong>。例如我的用户名是xpengV<br><img src="/img/博客搭建/003.png" alt="博客搭建-3"><br>本地的BlogNoun文件夹目录结构为：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-rwxr-xr-x@   <span class="number">1</span> xiaopeng  staff     <span class="number">2219</span>  <span class="number">6</span> <span class="number">14</span> <span class="number">21</span>:<span class="number">04</span> _config.yml</span><br><span class="line">-rw-r--r--    <span class="number">1</span> xiaopeng  staff  <span class="number">1868411</span>  <span class="number">6</span> <span class="number">14</span> <span class="number">21</span>:<span class="number">04</span> db.json</span><br><span class="line">drwxr-xr-x  <span class="number">309</span> xiaopeng  staff     <span class="number">9888</span>  <span class="number">6</span> <span class="number">13</span> <span class="number">21</span>:<span class="number">35</span> node_modules</span><br><span class="line">-rwxr-xr-x    <span class="number">1</span> xiaopeng  staff      <span class="number">554</span>  <span class="number">6</span> <span class="number">13</span> <span class="number">20</span>:<span class="number">58</span> <span class="keyword">package</span>.json</span><br><span class="line">drwxr-xr-x    <span class="number">5</span> xiaopeng  staff      <span class="number">160</span>  <span class="number">6</span> <span class="number">13</span> <span class="number">20</span>:<span class="number">57</span> scaffolds</span><br><span class="line">drwxr-xr-x    <span class="number">7</span> xiaopeng  staff      <span class="number">224</span>  <span class="number">6</span> <span class="number">14</span> <span class="number">12</span>:<span class="number">29</span> source</span><br><span class="line">drwxr-xr-x    <span class="number">4</span> xiaopeng  staff      <span class="number">128</span>  <span class="number">6</span> <span class="number">13</span> <span class="number">20</span>:<span class="number">57</span> themes</span><br></pre></td></tr></table></figure></p>
 <p>打开_config.yml文件，修改部分文件：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: git<span class="meta">@github</span>.com:用户名/用户名.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure></p>
 <p>例如我的修改为repository: <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:xpengV/xpengV.github.io.git</p>
-<h2 id="2-2"><a href="#2-2" class="headerlink" title="2.2"></a>2.2</h2><ol>
+<h2 id="2-2、添加ssh-key到github"><a href="#2-2、添加ssh-key到github" class="headerlink" title="2.2、添加ssh key到github"></a>2.2、添加ssh key到github</h2><ul>
 <li>检查是否可以连接github<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git<span class="meta">@github</span>.com</span><br></pre></td></tr></table></figure>
 </li>
-</ol>
+</ul>
 <p><img src="/img/博客搭建/004.png" alt="博客搭建-4"><br>若如上则跳过该步骤，否则继续</p>
-<ol start="2">
+<ul>
 <li>生成新的ssh key<br>在BlogNoun目录执行以下命令，邮箱地址是注册github时的邮箱地址<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">"yourEmail@163.com"</span></span><br></pre></td></tr></table></figure>
 </li>
-</ol>
+</ul>
 <p><img src="/img/博客搭建/005.png" alt="博客搭建-5"><br>默认会在~/.ssh生成id_rsa和id_rsa.pub两个文件</p>
-<ol start="3">
-<li>添加公钥<br>打开~/.ssh/id_rsa.pub文件，将其中的全部内容拷贝添加到github的SSH key中<br>github–&gt;setting–&gt;SSH keys–&gt;add SSH keys<br><img src="/img/博客搭建/006.png" alt="博客搭建-6"><br>添加后点击Add Keys按钮，然后使用ssh -T <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>测试是否连接成功！</li>
-</ol>
+<ul>
+<li>添加公钥<br>打开~/.ssh/id_rsa.pub文件，将其中的全部内容拷贝添加到github的SSH key中<br>github–&gt;setting–&gt;SSH keys–&gt;add SSH keys<br><img src="/img/博客搭建/006.png" alt="博客搭建-6"><br>点击SSH and GPG keys 添加sshkey即可。添加后点击Add Keys按钮，然后使用ssh -T <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>测试是否连接成功！</li>
+</ul>
 <h2 id="2-3、发布文章"><a href="#2-3、发布文章" class="headerlink" title="2.3、发布文章"></a>2.3、发布文章</h2><p>终端cd到BlogNoun目录，执行命令 hexo new “filename” 新建文章<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">BlogNoun xiaopeng$ pwd</span><br><span class="line">/Users/xiaopeng/BlogNoun</span><br><span class="line">BlogNoun xiaopeng$ hexo <span class="keyword">new</span> <span class="string">"first_article"</span></span><br><span class="line">INFO  Created: ~/BlogNoun/source/_posts/first-article.md</span><br><span class="line">BlogNoun xiaopeng$</span><br></pre></td></tr></table></figure></p>
 <p>上述命令会在BlogNoun/source/_posts目录下生成first_article.md文件。</p>
 <p>关于markdown语法，可以学习<a href="https://www.jianshu.com/p/20e82ddb37cb" target="_blank" rel="noopener">markdown教程</a></p>
-<p>之后使用<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d -g <span class="comment">//生成静态页面，并远程部署</span></span><br></pre></td></tr></table></figure></p>
+<p>之后使用，生成静态页面，并远程部署<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d -g <span class="comment">//生成静态页面，并远程部署</span></span><br></pre></td></tr></table></figure></p>
 <p>访问http://用户名.github.io就可以看见你刚发布的文章了。<br><img src="/img/博客搭建/008.png" alt="博客搭建-008"></p>
 <h1 id="3、安装主题"><a href="#3、安装主题" class="headerlink" title="3、安装主题"></a>3、安装主题</h1><p>你能看到这里，说明你已经成功的发布了自己的第一篇文章。但是有没有发现你的博客主题和我的不太一样。</p>
 <p>Hexo是一个简单优雅，风格多变的平台。这里有很多非常炫酷的主题。<a href="https://www.zhihu.com/question/24422335" target="_blank" rel="noopener">主题连接</a><br>我使用的就是<a href="http://litten.me/" target="_blank" rel="noopener">git@github.com:litten/hexo-theme-yilia.git</a></p>
-<ol>
-<li><p>选择自己喜欢的主题后，获得他的clone with ssh，在BlogNoun目录执行以下命令<br>获得地址方法：<br><img src="/img/博客搭建/009.png" alt="博客搭建-009"></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone git<span class="meta">@github</span>.com:litten/hexo-theme-yilia.git</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>将BlogNoun/_config.yml中的theme属性由landscape修改为yilia</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Extensions</span><br><span class="line">## Plugins: https://hexo.io/plugins/</span><br><span class="line">## Themes: https://hexo.io/themes/</span><br><span class="line">#theme: landscape</span><br><span class="line">theme: yilia   #这里修改为你自己的主题</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>重新部署</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d -g</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
+<p>1.选择自己喜欢的主题后，获得他的clone with ssh，在BlogNoun目录执行以下命令</p>
+<p>获得地址方法：<br><img src="/img/博客搭建/009.png" alt="博客搭建-009"><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone git<span class="meta">@github</span>.com:litten/hexo-theme-yilia.git</span><br></pre></td></tr></table></figure></p>
+<p>2.将BlogNoun/_config.yml中的theme属性由landscape修改为yilia<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Extensions</span><br><span class="line">## Plugins: https://hexo.io/plugins/</span><br><span class="line">## Themes: https://hexo.io/themes/</span><br><span class="line">#theme: landscape</span><br><span class="line">theme: yilia   #这里修改为你自己的主题</span><br></pre></td></tr></table></figure></p>
+<p>3.重新部署<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d -g</span><br></pre></td></tr></table></figure></p>
 <p>重新部署过后，刚才的first_article就变成<br><img src="/img/博客搭建/010.png" alt="博客搭建-010"></p>
-<ol start="4">
-<li>主题自定义<br>至于更改theme的内容。比如名称，描述，头像，网站连接，关于我等。修改BlogNoun/_config.yml和BlogNoun/theme/yilia/_config.yml<br>文件中对应的属性值即可。在<a href="https://github.com/litten/hexo-theme-yilia/blob/master/README.md" target="_blank" rel="noopener">hexo-theme-yilia的readme.md</a>中有详细的教程！</li>
-</ol>
-<h1 id="4、添加相册功能"><a href="#4、添加相册功能" class="headerlink" title="4、添加相册功能"></a>4、添加相册功能</h1><p>yilia支持添加相册，但是由于我还没有搞明白像素的问题，所以导致照片有些失真。<br><img src="/img/博客搭建/011.png" alt="博客搭建-011"></p>
-<ol>
-<li><p>在BlogNoun目录执行</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page photos  #在BlogNoun/source目录下创建photos目录</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>将yilia处理图片的代码拷贝到photos目录中<br><em><a href="https://github.com/litten/BlogBackup/tree/master/source/photos" target="_blank" rel="noopener">https://github.com/litten/BlogBackup/tree/master/source/photos</a></em></p>
-</li>
-</ol>
+<p>4.主题自定义<br>至于更改theme的内容。比如名称，描述，头像，网站连接，关于我等。修改BlogNoun/_config.yml和BlogNoun/theme/yilia/_config.yml<br>文件中对应的属性值即可。在<a href="https://github.com/litten/hexo-theme-yilia/blob/master/README.md" target="_blank" rel="noopener">hexo-theme-yilia的readme.md</a>中有详细的教程！</p>
+<h1 id="4、添加相册功能"><a href="#4、添加相册功能" class="headerlink" title="4、添加相册功能"></a>4、添加相册功能</h1><p>yilia支持添加相册，但是由于我还没有搞明白yilia像素处理的问题，所以导致照片有些失真。<br><img src="/img/博客搭建/011.png" alt="博客搭建-011"><br>1.在BlogNoun目录执行<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page photos  #在BlogNoun/source目录下创建photos目录</span><br></pre></td></tr></table></figure></p>
+<p>2.将yilia处理图片的代码拷贝到photos目录中<br><em><a href="https://github.com/litten/BlogBackup/tree/master/source/photos" target="_blank" rel="noopener">https://github.com/litten/BlogBackup/tree/master/source/photos</a></em></p>
 <ul>
 <li>index.ejs</li>
 <li>ins.css</li>
@@ -264,9 +249,7 @@
 <li>ins.json</li>
 <li>lazyload.min.js</li>
 </ul>
-<ol start="3">
-<li>修改相应的配置文件（自己研究吧，只说思路）</li>
-</ol>
+<p>3.修改相应的配置文件（自己研究吧，只说思路）</p>
 <ul>
 <li><p>source/photos/index.ejs  先屏蔽掉摄影模块的功能；<strong>修改你存放相册照片的url(可以单独建立一个github代码仓库用来存放照片）。我是在source/photos_resource下存放图片的</strong></p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--</span><br><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"photos-btn-wrap"</span>&gt;</span><br><span class="line">	&lt;a class="photos-btn active" href="javascript:void(0)"&gt;Ins&lt;/a&gt;</span><br><span class="line">	&lt;a class="photos-btn" target="_blank" href="http://litten.me/gallery/"&gt;摄影&lt;/a&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">--&gt;</span><br><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"instagram itemscope"</span>&gt;</span><br><span class="line">	&lt;a href="https://raw.githubusercontent.com/xpengV/Blog_backup/master/source/photos_resource/" target="_blank" class="open-ins"&gt;图片来自blog_backup/resource，正在加载中…&lt;/a&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
@@ -279,28 +262,21 @@
 </li>
 </ul>
 <p><strong>修改加载图片的url、minSrc和src</strong></p>
-<ol start="4">
+<ul>
 <li>打开相册菜单<br>修改BlogNoun/theme/yilia/_config.yml<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">menu:</span><br><span class="line">   主页: /</span><br><span class="line">#  随笔: /tags/随笔/</span><br><span class="line">   相册: /photos</span><br></pre></td></tr></table></figure>
 </li>
-</ol>
+</ul>
 <p>到这相册功能的开发就完成了^_^~</p>
 <h1 id="5、网易云音乐外链"><a href="#5、网易云音乐外链" class="headerlink" title="5、网易云音乐外链"></a>5、网易云音乐外链</h1><p>以前的QQ空间或者其他博客网站可以加入第三方的音乐播放外链，比如<a href="http://xiaopeng.pro/2018/04/19/网易云音乐热评-转载/" target="_blank" rel="noopener">xiaopeng.pro</a></p>
-<ol>
-<li><p>访问<a href="https://music.163.com" target="_blank" rel="noopener">网易云</a><br><img src="/img/博客搭建/012.png" alt="博客搭建-012"><br>点击生成外链播放器可以获得以下代码：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;embed src="//music.163.com/style/swf/widget.swf?-------------------" width="340" height="86"  allowNetworking="all"&gt;&lt;/embed&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>将上述代码拷贝到source/_posts中md文件合适的位置即可</p>
-</li>
-</ol>
-<h1 id="6、绑定个人域名"><a href="#6、绑定个人域名" class="headerlink" title="6、绑定个人域名"></a>6、绑定个人域名</h1><p>我是在阿里云购买的域名，xiaopeng.pro。绑定个人域名操作非常简单。</p>
-<ol>
-<li><p>在BlogNoun/source目录下创建CNAME文件，在里面添加域名信息(你的域名)<br><img src="/img/博客搭建/013.png" alt="博客搭建-013"></p>
-</li>
-<li><p>github项目添加域名<br>在userName/userName.github.io/setting/GitHub Pages添加域名<br><img src="/img/博客搭建/014.png" alt="博客搭建-014"></p>
-</li>
-<li><p>给域名添加解析记录</p>
-</li>
-</ol>
+<p>1.访问<a href="https://music.163.com" target="_blank" rel="noopener">网易云</a></p>
+<p><img src="/img/博客搭建/012.png" alt="博客搭建-012"></p>
+<p>点击生成外链播放器可以获得以下代码：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;embed src="//music.163.com/style/swf/widget.swf?-------------------" width="340" height="86"  allowNetworking="all"&gt;&lt;/embed&gt;</span><br></pre></td></tr></table></figure></p>
+<p>2.将上述代码拷贝到source/_posts中md文件合适的位置即可</p>
+<h1 id="6、绑定个人域名"><a href="#6、绑定个人域名" class="headerlink" title="6、绑定个人域名"></a>6、绑定个人域名</h1><p>我是在阿里云购买的域名，xiaopeng.pro。绑定个人域名操作非常简单。<br>1.在BlogNoun/source目录下创建CNAME文件，在里面添加域名信息(你的域名)</p>
+<p><img src="/img/博客搭建/013.png" alt="博客搭建-013"></p>
+<p>2.github项目添加域名</p>
+<p>在userName/userName.github.io/setting/GitHub Pages添加域名<br><img src="/img/博客搭建/014.png" alt="博客搭建-014"></p>
+<p>3.给域名添加解析记录</p>
 <ul>
 <li><p>ping你的博客地址</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">source xiaopeng$ ping xpengv.github.io</span><br><span class="line">PING sni.github.map.fastly.net (<span class="number">123.123</span>.123.123): <span class="number">56</span> data bytes</span><br><span class="line">Request timeout <span class="keyword">for</span> icmp_seq <span class="number">0</span></span><br><span class="line"><span class="number">64</span> bytes from <span class="number">123.123</span>.123.123: icmp_seq=<span class="number">1</span> ttl=<span class="number">50</span> time=<span class="number">338.643</span> ms</span><br><span class="line"><span class="number">64</span> bytes from <span class="number">123.123</span>.123.123: icmp_seq=<span class="number">2</span> ttl=<span class="number">50</span> time=<span class="number">358.213</span> ms</span><br><span class="line">^C</span><br><span class="line">--- sni.github.map.fastly.net ping statistics ---</span><br><span class="line">source xiaopeng$ </span><br><span class="line">source xiaopeng$</span><br></pre></td></tr></table></figure>
@@ -636,7 +612,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">肖   鹏&lt;br&gt;&lt;br&gt;QQ：1584439731&lt;br&gt;Email：a_xiao_peng@163.com&lt;br&gt;----------------------------&lt;br&gt;&lt;br&gt;喜欢这种东西&lt;br&gt;捂住嘴巴&lt;br&gt;也会从眼睛里跑出来&lt;br&gt;&lt;br&gt;年轻无为，以码为生!&lt;br&gt;</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">肖   鹏&lt;br&gt;&lt;br&gt; QQ：1584439731&lt;br&gt; Email：a_xiao_peng@163.com&lt;br&gt; ----------------------------&lt;br&gt;&lt;br&gt; 胆小认生 ，不易相处&lt;br&gt;</div>
   	  	
     	</section>
     
