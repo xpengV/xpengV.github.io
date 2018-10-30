@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.xiaopeng.pro">
-  <title>「数据结构」-6-线性表 | 肖鹏</title>
+  <title>「数据结构」-6-线性表(顺序存储) | 肖鹏</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="线性表线性结构是计算机程序设计中最常遇见的一种操作对象，也是数据结构中最简单、最重要的结构形式之一。简单地将，线性表（Linear List）是n个数据元素的有限序列（a1,a2,…,an）。n=0时称为空表。  线性表的特征：   对于长度为n(n&amp;gt;0)线性表,有且仅有一个开始结点a1，有且仅有一个终端结点an 当a=1,2,..,n-1时，ai仅有一个直接后继ai+1 当a=2,3,..">
 <meta name="keywords" content="数据结构,读书笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="「数据结构」-6-线性表">
-<meta property="og:url" content="http://www.xiaopeng.pro/2018/10/27/「数据结构」-6-线性表/index.html">
+<meta property="og:title" content="「数据结构」-6-线性表(顺序存储)">
+<meta property="og:url" content="http://www.xiaopeng.pro/2018/10/27/「数据结构」-6-线性表(顺序存储)/index.html">
 <meta property="og:site_name" content="肖鹏">
 <meta property="og:description" content="线性表线性结构是计算机程序设计中最常遇见的一种操作对象，也是数据结构中最简单、最重要的结构形式之一。简单地将，线性表（Linear List）是n个数据元素的有限序列（a1,a2,…,an）。n=0时称为空表。  线性表的特征：   对于长度为n(n&amp;gt;0)线性表,有且仅有一个开始结点a1，有且仅有一个终端结点an 当a=1,2,..,n-1时，ai仅有一个直接后继ai+1 当a=2,3,..">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-10-27T08:08:55.713Z">
+<meta property="og:updated_time" content="2018-10-30T04:21:56.547Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="「数据结构」-6-线性表">
+<meta name="twitter:title" content="「数据结构」-6-线性表(顺序存储)">
 <meta name="twitter:description" content="线性表线性结构是计算机程序设计中最常遇见的一种操作对象，也是数据结构中最简单、最重要的结构形式之一。简单地将，线性表（Linear List）是n个数据元素的有限序列（a1,a2,…,an）。n=0时称为空表。  线性表的特征：   对于长度为n(n&amp;gt;0)线性表,有且仅有一个开始结点a1，有且仅有一个终端结点an 当a=1,2,..,n-1时，ai仅有一个直接后继ai+1 当a=2,3,..">
   
   
@@ -161,19 +161,19 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-「数据结构」-6-线性表" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-「数据结构」-6-线性表(顺序存储)" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      「数据结构」-6-线性表
+      「数据结构」-6-线性表(顺序存储)
     </h1>
   
 
         
-        <a href="/2018/10/27/「数据结构」-6-线性表/" class="archive-article-date">
+        <a href="/2018/10/27/「数据结构」-6-线性表(顺序存储)/" class="archive-article-date">
   	<time datetime="2018-10-27T06:26:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-27</time>
 </a>
         
@@ -228,7 +228,7 @@
 <tr>
 <td>6</td>
 <td>删除delete(L,i)</td>
-<td>删除线性表L的第i个结点</td>
+<td>删除线性表L的第i个结点，并返回该结点的值</td>
 </tr>
 </tbody>
 </table>
@@ -242,9 +242,38 @@
 </ul>
 <p>我们可以使用如下结构表示顺序表：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxsize 1024  <span class="comment">/* 线性表最大长度，假设是1024 */</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> datatype;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    datatype data[maxsize];</span><br><span class="line">    <span class="keyword">int</span> last;        <span class="comment">/* last表示线性表终端结点在向量空间中的位置，所以last+1等于线性表的当前长度 */</span></span><br><span class="line">&#125; sequenlist;</span><br></pre></td></tr></table></figure></p>
 <h3 id="顺序表的基本运算"><a href="#顺序表的基本运算" class="headerlink" title="顺序表的基本运算"></a>顺序表的基本运算</h3><h4 id="1-插入运算"><a href="#1-插入运算" class="headerlink" title="1. 插入运算"></a>1. 插入运算</h4><p>在顺序表的第i(1&le;i&le;n+1)个位置上，插入一个新结点x，使长度为n的顺序表：(a<sub>1</sub>,…,a<sub>i-1</sub>,a<sub>i</sub>,…,a<sub>n</sub>)变成长度为n+1的顺序表：(a<sub>1</sub>,…,a<sub>i-1</sub>,x,a<sub>i</sub>,…,a<sub>n</sub>)。</p>
-<p><strong>由于顺序表中的元素是储存在内存地址连续的空间上，所以插入x结点之前，需要将n,n-1,…,i这些结点依次后移到n+1,n,…,i+1上，再将空出的第i个结点插入值x。</strong> 整个过程如下：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">///将新结点x插入顺序表L的第i个位置上</span></span><br><span class="line"> <span class="function"><span class="keyword">int</span> <span class="title">INSERT</span><span class="params">(sequenlist * L,<span class="keyword">int</span> x,<span class="keyword">int</span> i)</span></span></span><br><span class="line"><span class="function"> </span>&#123;</span><br><span class="line">     <span class="keyword">int</span> j;</span><br><span class="line">     <span class="keyword">if</span>((L-&gt;last)&gt;=maxsize<span class="number">-1</span>)</span><br><span class="line">     &#123;</span><br><span class="line">         <span class="built_in">printf</span>(<span class="string">"表空间溢出，不允许再插入元素！\r\n"</span>);</span><br><span class="line">         <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">     &#125;<span class="keyword">else</span></span><br><span class="line">     &#123;</span><br><span class="line">         <span class="keyword">if</span>((i&lt;<span class="number">1</span>)||(i&gt;(L-&gt;last)+<span class="number">2</span>))</span><br><span class="line">         &#123;</span><br><span class="line">             <span class="built_in">printf</span>(<span class="string">"下标有误!\r\n"</span>);</span><br><span class="line">             <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">         &#125;<span class="keyword">else</span></span><br><span class="line">         &#123;</span><br><span class="line">             <span class="keyword">for</span>(j=L-&gt;last;j&gt;=i<span class="number">-1</span>;j--)</span><br><span class="line">             &#123;</span><br><span class="line">                 L-&gt;data[j+<span class="number">1</span>] = L-&gt;data[j];     <span class="comment">/* 结点往后移动 */</span></span><br><span class="line">             &#125;</span><br><span class="line">             </span><br><span class="line">             L-&gt;data[i<span class="number">-1</span>] = x;              <span class="comment">/* 插入x，存在（*L）data[i-1]中 */</span></span><br><span class="line">             L-&gt;last = L-&gt;last+<span class="number">1</span>;</span><br><span class="line">             <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
-<h4 id="2-删除元素"><a href="#2-删除元素" class="headerlink" title="2.删除元素"></a>2.删除元素</h4><p>将顺序表的第i(1&le;n&le;n)个结点删除，使长度为n的顺序表：(a<sub>1</sub>,…,a<sub>i-1</sub>,a<sub>i</sub>，a<sub>i+1</sub>,…,a<sub>n</sub>)变成长度为n-1的顺序表：(a<sub>1</sub>,…,a<sub>i-1</sub>a<sub>i+1</sub>,…,a<sub>n</sub>)。</p>
-<p><strong>与插入操作类似，删除同样需要移动元素</strong></p>
+<p><strong>由于顺序表中的元素是储存在内存地址连续的空间上，所以插入x结点之前，需要将n,n-1,…,i这些结点依次后移到n+1,n,…,i+1上，再将空出的第i个结点插入值x。</strong> 整个过程如下：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//将新结点x插入顺序表L的第i个位置上</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(sequenlist * L,<span class="keyword">int</span> x,<span class="keyword">int</span> i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> j;</span><br><span class="line">    <span class="keyword">if</span>((L-&gt;last)&gt;=maxsize<span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"表空间溢出，不允许再插入元素！\r\n"</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>((i&lt;<span class="number">1</span>)||(i&gt;(L-&gt;last)+<span class="number">2</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"插入元素的下标有误!\r\n"</span>);</span><br><span class="line">            <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span>(j=L-&gt;last;j&gt;=i<span class="number">-1</span>;j--)</span><br><span class="line">            &#123;</span><br><span class="line">                L-&gt;data[j+<span class="number">1</span>] = L-&gt;data[j];     <span class="comment">/* 结点往后移动 */</span></span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            L-&gt;data[i<span class="number">-1</span>] = x;              <span class="comment">/* 插入x，存在（*L）data[i-1]中 */</span></span><br><span class="line">            L-&gt;last = L-&gt;last+<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>顺序表插入结点算法的思路：</strong></p>
+<ol>
+<li>如果插入位置不合理，抛出异常；</li>
+<li>如果线性表长度不够，则抛出异常或者动态增加容量；</li>
+<li>从最后一个元素向前遍历到第i个元素，分别将它们向后移动一个位置；</li>
+<li>将要插入的元素填入位置i；</li>
+<li>表长加一； </li>
+</ol>
+<h4 id="2-删除元素"><a href="#2-删除元素" class="headerlink" title="2.删除元素"></a>2.删除元素</h4><p>将顺序表的第i(1&le;n&le;n)个结点删除，使长度为n的顺序表：(a<sub>1</sub>,…,a<sub>i-1</sub>,a<sub>i</sub>，a<sub>i+1</sub>,…,a<sub>n</sub>)变成长度为n-1的顺序表：(a<sub>1</sub>,…,a<sub>i-1</sub>a<sub>i+1</sub>,…,a<sub>n</sub>)。<br><strong>与插入操作类似，删除同样需要移动元素，依次将i+1,i+2,…,n这些结点往前移动一个位置到i,i+1,…,n-1上。</strong>整个过程如下：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//sequenlist-delete elem</span></span><br><span class="line"><span class="comment">//删除顺序表L的第i个结点data[i-1]，并返回该节点的值</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delete</span><span class="params">(sequenlist *L,<span class="keyword">int</span> i,<span class="keyword">int</span> *res)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> j;</span><br><span class="line">    <span class="keyword">if</span>(i&lt;<span class="number">1</span>||i&gt;L-&gt;last)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"删除元素的下标有误！\r\n"</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        *res = L-&gt;data[i<span class="number">-1</span>];                 <span class="comment">/* 获取被删除元素的值 */</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"被删除元素的值是[%d]\r\n"</span>,*res);</span><br><span class="line">        <span class="keyword">for</span>(j=i;j&lt;L-&gt;last;j++)</span><br><span class="line">        &#123;</span><br><span class="line">            L-&gt;data[j<span class="number">-1</span>] = L-&gt;data[j];      <span class="comment">/* 结点向前移动 */</span></span><br><span class="line">        &#125;</span><br><span class="line">        L-&gt;last--;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>注意删除第i个元素其实是删除L-&gt;data[i-1]</p>
+<p><strong>顺序表删除结点算法的思路：</strong></p>
+<ol>
+<li>如果位置不合理，抛出异常；</li>
+<li>取出被删除的元素；</li>
+<li>从删除元素向后遍历到最后一个元素，分别将它们向前移动一个位置；</li>
+<li>表长减一；</li>
+</ol>
+<h4 id="3-复杂度"><a href="#3-复杂度" class="headerlink" title="3.复杂度"></a>3.复杂度</h4><p>顺序表的查询直接根据下标获取元素，时间复杂度为<em>O(1)</em>；插入和删除因为需要移动大量元素，其时间复杂度为<em>O(n)</em>。</p>
+<h4 id="4-线性表顺序储存结构优缺点"><a href="#4-线性表顺序储存结构优缺点" class="headerlink" title="4. 线性表顺序储存结构优缺点"></a>4. 线性表顺序储存结构优缺点</h4><p><strong>优点：</strong> </p>
+<ol>
+<li>无须为表中元素的逻辑关系而增加额外的存储空间 </li>
+<li>可以快速按照下标进行查找 </li>
+</ol>
+<p><strong>缺点：</strong></p>
+<ol>
+<li>插入和删除操作需要移动大量元素，效率低</li>
+<li>频繁的数据移动会造成存储空间的碎片</li>
+</ol>
+<hr>
+
+<p>本文中的代码块见 <a href="https://github.com/xpengV/Data-Structure" target="_blank" rel="noopener"><code>「my github Data-Structure」</code></a>。</p>
 
       
 
@@ -258,7 +287,7 @@
     
     <br>
     <strong>本文链接：</strong>
-    http://www.xiaopeng.pro/2018/10/27/「数据结构」-6-线性表/
+    http://www.xiaopeng.pro/2018/10/27/「数据结构」-6-线性表(顺序存储)/
     <br>
     <strong>版权声明：</strong>
     本文章采用
@@ -371,7 +400,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://www.xiaopeng.pro/2018/10/27/「数据结构」-6-线性表/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://www.xiaopeng.pro/2018/10/27/「数据结构」-6-线性表(顺序存储)/" alt="微信分享二维码">
     </div>
 </div>
 
