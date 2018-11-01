@@ -158,6 +158,123 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-单例模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/articles/f1601c3e.html">单例模式</a>
+    </h1>
+  
+
+        
+        <a href="/articles/f1601c3e.html" class="archive-article-date">
+  	<time datetime="2017-06-03T01:21:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>单例模式：保证一个类仅有一个实例，并提供一个访问它的全局访问点。<br>Singleton类，定义一个getInstance静态方法，允许客户访问它的唯一实例。</p>
+<h2 id="1、懒汉式单例模式"><a href="#1、懒汉式单例模式" class="headerlink" title="1、懒汉式单例模式"></a>1、懒汉式单例模式</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(instance == <span class="keyword">null</span>)&#123;</span><br><span class="line">            instance = <span class="keyword">new</span> Singleton();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>构造方法私有，防止外界利用构造方法进行实例化（但实际通过发射亦可以在外部调用私有构造方法，这里不讨论）</li>
+<li>getInstance是外界唯一能够访问的入口</li>
+<li>若实例存在，那么直接返回。全局只有一个对象</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Singleton s1 = Singleton.getInstance();</span><br><span class="line">Singleton s2 = Singleton.getInstance();</span><br><span class="line"></span><br><span class="line">System.out.println(s1 == s2);  <span class="comment">//true：表示两次实例化结果一样，是单例的</span></span><br></pre></td></tr></table></figure>
+<h2 id="2、线程安全的懒汉式"><a href="#2、线程安全的懒汉式" class="headerlink" title="2、线程安全的懒汉式"></a>2、线程安全的懒汉式</h2><p>但是懒汉式的单例模式并不是线程安全的，在多线程并发的情况下可能会出现多个实例。要实现线程安全，要对getInsance方法进行改造使懒汉式变得线程安全。</p>
+<ul>
+<li>对getInstance方法使用同步方法或者同步代码块<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> Singleton <span class="title">getInstance_1</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(instance == <span class="keyword">null</span>)&#123;</span><br><span class="line">            instance = <span class="keyword">new</span> Singleton();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>虽然多线程下是安全的，但是方法的整个事务判断全部被同步，这种写法效率不高！</p>
+<ul>
+<li>双重检查锁定<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance_2</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(instance == <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (instance)&#123;</span><br><span class="line">                <span class="keyword">if</span>(instance == <span class="keyword">null</span>)&#123;</span><br><span class="line">                    instance = <span class="keyword">new</span> Singleton();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>双重检查模式先判断实例是否存在，不存在再进行加锁处理。相比上一种写法提高了效率。</strong></p>
+<ul>
+<li>静态内部类<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">LazyHolder</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton INSTANCE = <span class="keyword">new</span> Singleton();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton <span class="title">getInstance_3</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> LazyHolder.INSTANCE;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>相比上两种写法，效率要高！</p>
+<h2 id="3、饿汉式单例"><a href="#3、饿汉式单例" class="headerlink" title="3、饿汉式单例"></a>3、饿汉式单例</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonA</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingletonA</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> SingletonA instance = <span class="keyword">new</span> SingletonA();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingletonA <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>饿汉式单例在类创建的同时就创建了一个静态的实例变量，所以天生是线程安全的！</p>
+<h2 id="4、懒汉式和饿汉式的比较"><a href="#4、懒汉式和饿汉式的比较" class="headerlink" title="4、懒汉式和饿汉式的比较"></a>4、懒汉式和饿汉式的比较</h2><ol>
+<li>饿汉式天生线程安全，懒汉式需要进行上文的三种处理</li>
+<li>性能加载和资源：饿汉式在创建类时就会开辟内存空间实例化一个静态的变量，不管你是否使用它都在那里；懒汉式是一种延时加载的方式，<br>在第一次调用getInstance方法时实例化对象。</li>
+</ol>
+
+      
+
+      <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 start -->
+      
+
+  <div class="declare" hidden="hidden"></div>
+
+
+      <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 end -->
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/articles/f1601c3e.html">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+<!-- laibili评论系统 -->
+
+
+
+
+
+
+  
     <article id="post-策略模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -242,6 +359,11 @@
         
     </div>
 </aside>
+
+
+
+<!-- laibili评论系统 -->
+
 
 
 
@@ -341,6 +463,11 @@
         
     </div>
 </aside>
+
+
+
+<!-- laibili评论系统 -->
+
 
 
 
@@ -471,6 +598,11 @@
 
 
 
+<!-- laibili评论系统 -->
+
+
+
+
 
 
   
@@ -561,6 +693,11 @@
         
     </div>
 </aside>
+
+
+
+<!-- laibili评论系统 -->
+
 
 
 
@@ -655,6 +792,11 @@
 
 
 
+<!-- laibili评论系统 -->
+
+
+
+
 
 
   
@@ -742,6 +884,11 @@
         
     </div>
 </aside>
+
+
+
+<!-- laibili评论系统 -->
+
 
 
 
@@ -876,6 +1023,11 @@
 
 
 
+<!-- laibili评论系统 -->
+
+
+
+
 
 
   
@@ -959,6 +1111,11 @@
         
     </div>
 </aside>
+
+
+
+<!-- laibili评论系统 -->
+
 
 
 
@@ -1099,11 +1256,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">WebService</a>
+                <a href="javascript:void(0)" class="js-tag color5">博客搭建</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">博客搭建</a>
+                <a href="javascript:void(0)" class="js-tag color1">WebService</a>
               </li>
              
               <li class="article-tag-list-item">
