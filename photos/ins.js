@@ -120,7 +120,7 @@
           var minSrc = 'https://raw.githubusercontent.com/xpengV/BlogNoun/master/min_photos/' + data.link[i];  //去指定目录加载所有图片
           var src =    'https://raw.githubusercontent.com/xpengV/BlogNoun/master/photos/' + data.link[i];
           var type = data.type[i];
-          var target = src + (type === 'video' ? '.mp4' : '.jpg');
+          var target = src + (type === 'video' ? '.mp4' : '');    //.jpg  后缀被省略掉
           src += '.jpg';
 
           liTmpl += '<figure class="thumb" itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject">\
