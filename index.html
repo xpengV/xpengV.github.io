@@ -250,110 +250,6 @@
 
 
   
-    <article id="post-「数据结构」-排序算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/articles/2175caa4.html">「数据结构」-排序算法</a>
-    </h1>
-  
-
-        
-        <a href="/articles/2175caa4.html" class="archive-article-date">
-  	<time datetime="2018-11-12T07:27:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、冒泡排序（BubbleSort）"><a href="#一、冒泡排序（BubbleSort）" class="headerlink" title="一、冒泡排序（BubbleSort）"></a>一、冒泡排序（BubbleSort）</h2><p>基本思想：两个数比较大小，较大的数下沉，较小的数冒出。</p>
-<ol>
-<li>比较相邻的两个数，如果第二个数较小就交换位置。</li>
-<li>从后向前两两比较，一直到比较最前两个数据。最终最小数被交换到起始的位置，这样第一个最小数的位置就排好了。</li>
-<li>继续重复上述过程，依次将第2.3…n-1个最小数排好位置。</li>
-</ol>
-<ul>
-<li>时间复杂度O(n<sup>2</sup>)<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(<span class="keyword">int</span>[] arrs)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> temp;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arrs.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = arrs.length - <span class="number">1</span>; j &gt; i; j--) &#123;</span><br><span class="line">            <span class="keyword">if</span> (arrs[j] &lt; arrs[j - <span class="number">1</span>]) &#123;</span><br><span class="line">                temp = arrs[j];</span><br><span class="line">                arrs[j] = arrs[j - <span class="number">1</span>];</span><br><span class="line">                arrs[j - <span class="number">1</span>] = temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-        
-          <a class="article-more-a" href="/articles/2175caa4.html#more">more >></a>
-        
-      
-
-      <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 start -->
-      
-
-  <div class="declare" hidden="hidden"></div>
-
-
-      <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 end -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">读书笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/articles/2175caa4.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-<!-- laibili评论系统 -->
-
-
-
-
-
-
-  
     <article id="post-山水之间" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1106,6 +1002,112 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/articles/2362a8ea.html">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+<!-- laibili评论系统 -->
+
+
+
+
+
+
+  
+    <article id="post-线性表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/articles/40f24371.html">线性表</a>
+    </h1>
+  
+
+        
+        <a href="/articles/40f24371.html" class="archive-article-date">
+  	<time datetime="2018-03-02T14:15:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>线性表（List）:零个或多个数据元素的有限序列</strong></p>
+<p>线性表的相邻元素之间存在着序偶关系。如用（a1，…，ai-1，ai，ai+1，…，an）表示一个顺序表，则表中ai-1领先于ai，ai领先于ai+1，称ai-1是ai的直接前驱元素，ai+1是ai的直接后继元素。</p>
+<p>元素个数有限，元素之间有顺序，第一个元素无前驱，最后一个元素无后继。顺序存储结构的线性表，指的是地址连续的存储单元依次存储线性表的数据元素。</p>
+<h1 id="线性表的抽象数据结构"><a href="#线性表的抽象数据结构" class="headerlink" title="线性表的抽象数据结构"></a>线性表的抽象数据结构</h1><p>Operation</p>
+<ul>
+<li>init_list(*L);初始化操作，建立一个空的线性表L</li>
+<li>list_empty(L);判断线性表是否为空</li>
+<li>clear_list(*L);清空线性表</li>
+<li>get_elem(L,i,*e);获取线性表L中第i个位置的元素e</li>
+<li>list_insert(*L,i,e);在线性表L的第i个位置插入元素e</li>
+<li>list_delete(<em>L,i,</em>e);删除线性表L的第i个元素，并用e返回</li>
+</ul>
+        
+          <a class="article-more-a" href="/articles/40f24371.html#more">more >></a>
+        
+      
+
+      <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 start -->
+      
+
+  <div class="declare" hidden="hidden"></div>
+
+
+      <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 end -->
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">线性表</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/articles/40f24371.html">展开全文 >></a>
         </p>
       
 
