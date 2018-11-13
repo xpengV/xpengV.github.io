@@ -6,20 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.xiaopeng.pro">
-  <title>单例模式 | 肖鹏</title>
+  <title>「数据结构」-排序算法 | 肖鹏</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="单例模式：保证一个类仅有一个实例，并提供一个访问它的全局访问点。Singleton类，定义一个getInstance静态方法，允许客户访问它的唯一实例。 1、懒汉式单例模式12345678910111213public class Singleton &amp;#123;    private static Singleton instance;    private Singleton()&amp;#123;&amp;">
-<meta name="keywords" content="设计模式">
+  <meta name="description" content="一、冒泡排序（BubbleSort）基本思想：两个数比较大小，较大的数下沉，较小的数冒出。  比较相邻的两个数，如果第二个数较小就交换位置。 从后向前两两比较，一直到比较最前两个数据。最终最小数被交换到起始的位置，这样第一个最小数的位置就排好了。 继续重复上述过程，依次将第2.3…n-1个最小数排好位置。   时间复杂度O(n2)12345678910111213public static voi">
+<meta name="keywords" content="读书笔记,数据结构">
 <meta property="og:type" content="article">
-<meta property="og:title" content="单例模式">
-<meta property="og:url" content="http://www.xiaopeng.pro/articles/f1601c3e.html">
+<meta property="og:title" content="「数据结构」-排序算法">
+<meta property="og:url" content="http://www.xiaopeng.pro/articles/2175caa4.html">
 <meta property="og:site_name" content="肖鹏">
-<meta property="og:description" content="单例模式：保证一个类仅有一个实例，并提供一个访问它的全局访问点。Singleton类，定义一个getInstance静态方法，允许客户访问它的唯一实例。 1、懒汉式单例模式12345678910111213public class Singleton &amp;#123;    private static Singleton instance;    private Singleton()&amp;#123;&amp;">
+<meta property="og:description" content="一、冒泡排序（BubbleSort）基本思想：两个数比较大小，较大的数下沉，较小的数冒出。  比较相邻的两个数，如果第二个数较小就交换位置。 从后向前两两比较，一直到比较最前两个数据。最终最小数被交换到起始的位置，这样第一个最小数的位置就排好了。 继续重复上述过程，依次将第2.3…n-1个最小数排好位置。   时间复杂度O(n2)12345678910111213public static voi">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-10-31T02:24:48.851Z">
+<meta property="og:image" content="http://www.xiaopeng.pro/img/读书笔记-数据结构/插入排序-01.jpg">
+<meta property="og:updated_time" content="2018-11-12T08:40:43.328Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="单例模式">
-<meta name="twitter:description" content="单例模式：保证一个类仅有一个实例，并提供一个访问它的全局访问点。Singleton类，定义一个getInstance静态方法，允许客户访问它的唯一实例。 1、懒汉式单例模式12345678910111213public class Singleton &amp;#123;    private static Singleton instance;    private Singleton()&amp;#123;&amp;">
+<meta name="twitter:title" content="「数据结构」-排序算法">
+<meta name="twitter:description" content="一、冒泡排序（BubbleSort）基本思想：两个数比较大小，较大的数下沉，较小的数冒出。  比较相邻的两个数，如果第二个数较小就交换位置。 从后向前两两比较，一直到比较最前两个数据。最终最小数被交换到起始的位置，这样第一个最小数的位置就排好了。 继续重复上述过程，依次将第2.3…n-1个最小数排好位置。   时间复杂度O(n2)12345678910111213public static voi">
+<meta name="twitter:image" content="http://www.xiaopeng.pro/img/读书笔记-数据结构/插入排序-01.jpg">
   
   
     <link rel="icon" href="/img/avatar03.jpg">  <!-- 修改网站icon -->
@@ -165,57 +167,49 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-单例模式" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-「数据结构」-排序算法" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      单例模式
+      「数据结构」-排序算法
     </h1>
   
 
         
-        <a href="/articles/f1601c3e.html" class="archive-article-date">
-  	<time datetime="2017-06-03T01:21:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-03</time>
+        <a href="/articles/2175caa4.html" class="archive-article-date">
+  	<time datetime="2018-11-12T07:27:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-12</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>单例模式：保证一个类仅有一个实例，并提供一个访问它的全局访问点。<br>Singleton类，定义一个getInstance静态方法，允许客户访问它的唯一实例。</p>
-<h2 id="1、懒汉式单例模式"><a href="#1、懒汉式单例模式" class="headerlink" title="1、懒汉式单例模式"></a>1、懒汉式单例模式</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(instance == <span class="keyword">null</span>)&#123;</span><br><span class="line">            instance = <span class="keyword">new</span> Singleton();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>构造方法私有，防止外界利用构造方法进行实例化（但实际通过发射亦可以在外部调用私有构造方法，这里不讨论）</li>
-<li>getInstance是外界唯一能够访问的入口</li>
-<li>若实例存在，那么直接返回。全局只有一个对象</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Singleton s1 = Singleton.getInstance();</span><br><span class="line">Singleton s2 = Singleton.getInstance();</span><br><span class="line"></span><br><span class="line">System.out.println(s1 == s2);  <span class="comment">//true：表示两次实例化结果一样，是单例的</span></span><br></pre></td></tr></table></figure>
-<h2 id="2、线程安全的懒汉式"><a href="#2、线程安全的懒汉式" class="headerlink" title="2、线程安全的懒汉式"></a>2、线程安全的懒汉式</h2><p>但是懒汉式的单例模式并不是线程安全的，在多线程并发的情况下可能会出现多个实例。要实现线程安全，要对getInsance方法进行改造使懒汉式变得线程安全。</p>
-<ul>
-<li>对getInstance方法使用同步方法或者同步代码块<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> Singleton <span class="title">getInstance_1</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(instance == <span class="keyword">null</span>)&#123;</span><br><span class="line">            instance = <span class="keyword">new</span> Singleton();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>虽然多线程下是安全的，但是方法的整个事务判断全部被同步，这种写法效率不高！</p>
-<ul>
-<li>双重检查锁定<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance_2</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(instance == <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (instance)&#123;</span><br><span class="line">                <span class="keyword">if</span>(instance == <span class="keyword">null</span>)&#123;</span><br><span class="line">                    instance = <span class="keyword">new</span> Singleton();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><strong>双重检查模式先判断实例是否存在，不存在再进行加锁处理。相比上一种写法提高了效率。</strong></p>
-<ul>
-<li>静态内部类<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">LazyHolder</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton INSTANCE = <span class="keyword">new</span> Singleton();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton <span class="title">getInstance_3</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> LazyHolder.INSTANCE;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>相比上两种写法，效率要高！</p>
-<h2 id="3、饿汉式单例"><a href="#3、饿汉式单例" class="headerlink" title="3、饿汉式单例"></a>3、饿汉式单例</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonA</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingletonA</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> SingletonA instance = <span class="keyword">new</span> SingletonA();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingletonA <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>饿汉式单例在类创建的同时就创建了一个静态的实例变量，所以天生是线程安全的！</p>
-<h2 id="4、懒汉式和饿汉式的比较"><a href="#4、懒汉式和饿汉式的比较" class="headerlink" title="4、懒汉式和饿汉式的比较"></a>4、懒汉式和饿汉式的比较</h2><ol>
-<li>饿汉式天生线程安全，懒汉式需要进行上文的三种处理</li>
-<li>性能加载和资源：饿汉式在创建类时就会开辟内存空间实例化一个静态的变量，不管你是否使用它都在那里；懒汉式是一种延时加载的方式，<br>在第一次调用getInstance方法时实例化对象。</li>
+        <h2 id="一、冒泡排序（BubbleSort）"><a href="#一、冒泡排序（BubbleSort）" class="headerlink" title="一、冒泡排序（BubbleSort）"></a>一、冒泡排序（BubbleSort）</h2><p>基本思想：两个数比较大小，较大的数下沉，较小的数冒出。</p>
+<ol>
+<li>比较相邻的两个数，如果第二个数较小就交换位置。</li>
+<li>从后向前两两比较，一直到比较最前两个数据。最终最小数被交换到起始的位置，这样第一个最小数的位置就排好了。</li>
+<li>继续重复上述过程，依次将第2.3…n-1个最小数排好位置。</li>
 </ol>
-
+<ul>
+<li>时间复杂度O(n<sup>2</sup>)<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(<span class="keyword">int</span>[] arrs)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> temp;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arrs.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = arrs.length - <span class="number">1</span>; j &gt; i; j--) &#123;</span><br><span class="line">            <span class="keyword">if</span> (arrs[j] &lt; arrs[j - <span class="number">1</span>]) &#123;</span><br><span class="line">                temp = arrs[j];</span><br><span class="line">                arrs[j] = arrs[j - <span class="number">1</span>];</span><br><span class="line">                arrs[j - <span class="number">1</span>] = temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<a id="more"></a>
+<p>存在问题：对于已经排好序的数据，冒泡算法仍然会继续进行下一轮的比较，是没有意义的。<br>通过设置标志位flag，如果数据有交换flag设置为true。如果比较一轮后flag仍然为false，说明数据已经排好，就没有比较的必要。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort1</span><span class="params">(<span class="keyword">int</span>[] arrs)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> temp;</span><br><span class="line">    <span class="keyword">boolean</span> flag;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arrs.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line"></span><br><span class="line">        flag = <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = arrs.length - <span class="number">1</span>; j &gt; i; j--) &#123;</span><br><span class="line">            <span class="keyword">if</span> (arrs[j] &lt; arrs[j - <span class="number">1</span>]) &#123;</span><br><span class="line">                temp = arrs[j];</span><br><span class="line">                arrs[j] = arrs[j - <span class="number">1</span>];</span><br><span class="line">                arrs[j - <span class="number">1</span>] = temp;</span><br><span class="line">                Data.traversal();</span><br><span class="line"></span><br><span class="line">                flag = <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(!flag) <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="二、选择排序（SelectionSort）"><a href="#二、选择排序（SelectionSort）" class="headerlink" title="二、选择排序（SelectionSort）"></a>二、选择排序（SelectionSort）</h2><p>基本思想：在长度为n的无序数组中，第一次遍历n-1个数，找到最小的数与第一个交换；第二次遍历n-2个数，找到最小的数与第二个数交换，依次类推直到它变为有序数组。</p>
+<ul>
+<li>时间复杂度O(n<sup>2</sup>)<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(<span class="keyword">int</span>[] arrs)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;arrs.length-<span class="number">1</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> minIndex=i;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=i+<span class="number">1</span>;j&lt;arrs.length;j++)&#123;  <span class="comment">//第一次遍历 从 2至n</span></span><br><span class="line">            <span class="keyword">if</span>(arrs[j]&lt;arrs[minIndex])&#123;</span><br><span class="line">                minIndex = j;   <span class="comment">//寻找出最小元素</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(minIndex != i)&#123;</span><br><span class="line">            <span class="keyword">int</span> temp = arrs[i];</span><br><span class="line">            arrs[i] = arrs[minIndex];  <span class="comment">// 与最小值交换</span></span><br><span class="line">            arrs[minIndex] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="三、插入排序（InsertionSort）"><a href="#三、插入排序（InsertionSort）" class="headerlink" title="三、插入排序（InsertionSort）"></a>三、插入排序（InsertionSort）</h2><p>基本思想：在要排序的一组数中，假定前n-1个数已经排好序，现在将第n个数插到前面的有序数列中，使得这n个数也是排好顺序的。如此反复循环，直到全部排好顺序。</p>
+<ul>
+<li>时间复杂度O(n<sup>2</sup>)<br><img src="/img/读书笔记-数据结构/插入排序-01.jpg" alt="插入排序"></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(<span class="keyword">int</span>[] arrs)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;arrs.length-<span class="number">1</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=i+<span class="number">1</span>;j&gt;<span class="number">0</span>;j--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(arrs[j]&lt;arrs[j-<span class="number">1</span>])&#123;</span><br><span class="line">                <span class="keyword">int</span> temp = arrs[j-<span class="number">1</span>];</span><br><span class="line">                arrs[j-<span class="number">1</span>] = arrs[j];</span><br><span class="line">                arrs[j] = temp;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">break</span>;  <span class="comment">//比前一个数大，本就有序不需要交换顺序</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="四、希尔排序（ShellSort）"><a href="#四、希尔排序（ShellSort）" class="headerlink" title="四、希尔排序（ShellSort）"></a>四、希尔排序（ShellSort）</h2>
       
 
       <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 start -->
@@ -228,7 +222,7 @@
     
     <br>
     <strong>本文链接：</strong>
-    http://www.xiaopeng.pro/articles/f1601c3e.html
+    http://www.xiaopeng.pro/articles/2175caa4.html
     <br>
     <strong>版权声明：</strong>
     本文章采用
@@ -281,7 +275,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">读书笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
         		</li>
       		
 		</ul>
@@ -344,18 +342,18 @@
   
 <nav id="article-nav">
   
-    <a href="/articles/38a8d76a.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/articles/135744cf.html" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Springmvc
+          「四月は君の嘘」-观后感
         
       </div>
     </a>
   
   
-    <a href="/articles/72e3b671.html" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">策略模式</div>
+    <a href="/articles/e157340a.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">山水之间</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -379,38 +377,12 @@
 </aside>
 
 
-  
-
-  
-
-  
-
-  
-
-  
-
 
 <!-- laibili评论系统 -->
 
   
   
-  <div id="lv-container" data-id="city" data-uid="MTAyMC80MDQ0NS8xNjk3Mg==">
-	<script type="text/javascript">
-   (function(d, s) {
-       var j, e = d.getElementsByTagName(s)[0];
-
-       if (typeof LivereTower === 'function') { return; }
-
-       j = d.createElement(s);
-       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-       j.async = true;
-
-       e.parentNode.insertBefore(j, e);
-   })(document, 'script');
-	</script>
-<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
-</div>
-
+    <div class="lv-container"></div>
   
   
 

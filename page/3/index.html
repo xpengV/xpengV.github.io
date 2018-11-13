@@ -17,7 +17,7 @@
 <meta name="twitter:title" content="肖鹏">
   
   
-    <link rel="icon" href="/img/avatar02.jpg">  <!-- 修改网站icon -->
+    <link rel="icon" href="/img/avatar03.jpg">  <!-- 修改网站icon -->
   
   <link rel="stylesheet" type="text/css" href="/./main.0cf68a.css">
   <style type="text/css">
@@ -41,7 +41,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="http://xpengv.github.io" class="profilepic">
-			<img src="/img/avatar02.jpg" class="js-avatar">
+			<img src="/img/avatar03.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="http://xpengv.github.io">肖鹏</a></h1>
@@ -101,7 +101,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="/img/avatar02.jpg" class="js-avatar">
+				<img src="/img/avatar03.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">肖鹏</h1>
@@ -161,6 +161,214 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-工厂模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/articles/54788f73.html">工厂模式</a>
+    </h1>
+  
+
+        
+        <a href="/articles/54788f73.html" class="archive-article-date">
+  	<time datetime="2017-07-02T13:26:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在java语言中，实例化对象的方式大多使用new关键字，但是在某些情况下使用new关键字来实例化对象并不是最好的选择。<br>比如：某个类型的创建需要一系列初始值的计算工作，或者需要首先创建其他的辅助对象。那么类型的创建就不是单一的操作，而是一系列操作！客户端并不关心对象其内部的复杂运作，只是需要一个简单入口可以获得自己想要的实例。</p>
+<h2 id="1、工厂模式"><a href="#1、工厂模式" class="headerlink" title="1、工厂模式"></a>1、工厂模式</h2><p>为创建对象提供过渡接口，以便将创建对象的内部调用屏蔽起来，达到提高灵活性的目的。工厂模式可以分为三类：</p>
+<ol>
+<li>简单工厂模式[simple factory]</li>
+<li>工厂方法模式[factory method]</li>
+<li>抽象工厂模式[abstract factory]</li>
+</ol>
+<h3 id="1-1、三种方式的区别"><a href="#1-1、三种方式的区别" class="headerlink" title="1.1、三种方式的区别"></a>1.1、三种方式的区别</h3><ul>
+<li>simple factory / factory method</li>
+</ul>
+<p>一个抽象产品类—&gt;多个具体产品类<br>一个抽象工厂类—&gt;多个具体工厂类<br><strong>每个具体工厂只能创建一个具体的产品（一对一关系）</strong></p>
+<ul>
+<li>abstract factory</li>
+</ul>
+<p>多个抽象产品类—&gt;每种抽象产品对应多个具体产品<br>一个抽象工厂类—&gt;多个具体工厂类<br><strong>每个具体工厂可以创建多个具体的产品（一对多关系）</strong></p>
+<h2 id="2、简单工厂"><a href="#2、简单工厂" class="headerlink" title="2、简单工厂"></a>2、简单工厂</h2><p><img src="/img/设计模式/工厂模式/简单工厂模式.png" alt="简单工厂"></p>
+<p>生产thinkpad的内部过程必然是复杂的，但是经过工厂模式后都被屏蔽了起来。<strong>工厂是核心，应该包含一定的业务判断和逻辑用来选择进行创建的产品。</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Computer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Computer</span><span class="params">()</span></span>&#123;&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThinkPad_E450</span> <span class="keyword">extends</span> <span class="title">Computer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ThinkPad_E450</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"生产ThinkPad_E450"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThinkPad_E460</span> <span class="keyword">extends</span> <span class="title">Computer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ThinkPad_E460</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"生产ThinkPad_E460"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SimpleFactory</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Computer <span class="title">createComputer</span><span class="params">(<span class="keyword">int</span> type)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">switch</span> (type) &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">450</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> ThinkPad_E450();</span><br><span class="line">            <span class="keyword">case</span> <span class="number">460</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> ThinkPad_E460();</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">App</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        SimpleFactory factory = <span class="keyword">new</span> SimpleFactory();</span><br><span class="line">        factory.createComputer(<span class="number">450</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>分析代码：对于产品而言，如果需要新增产品那么创建Computer的子类即可，但是对于工厂则要修改业务逻辑来适配新产品的创建，这显然违背好的设计原则。在实际的生产中产品的形态可能是一种树状结构，就更加复杂了。<br><strong>我们将工厂类也定义成接口，每增加一种产品类型就增加一个工厂的实现来适配对应的产品创建</strong>，这样工厂的设计就可以扩展而不是去修改原来的代码！</p>
+<h2 id="3、工厂方法模式"><a href="#3、工厂方法模式" class="headerlink" title="3、工厂方法模式"></a>3、工厂方法模式</h2><p>针对每种产品适配一个工厂，UML如下。代码见<a href="https://github.com/xpengV/DesignPattern" target="_blank" rel="noopener">My Github - 设计模式</a><br><img src="/img/设计模式/工厂模式/工厂方法模式.png" alt="工厂方法模式"><br>工厂方法模式仿佛已经很完美的对对象的创建进行了包装，使得客户程序中仅仅处理抽象产品角色提供的接口，但使得对象的数量成倍增长。<br>当产品种类非常多时，会出现大量的与之对应的工厂对象。</p>
+<h2 id="4、抽象工厂模式"><a href="#4、抽象工厂模式" class="headerlink" title="4、抽象工厂模式"></a>4、抽象工厂模式</h2><p>抽象工厂是工厂方法模式的升级版，它用来创建一组相互依赖的对象。比如每个抽象产品角色都包含两个具体产品，并且它们之间是相互依赖的。在调用工厂暴露的方法创建产品时，会同时创建相互依赖的对象来构建一个完整的产品。而不是单个创建然后组装。<a href="https://blog.csdn.net/jason0539/article/details/44976775" target="_blank" rel="noopener">详见：抽象工厂模式</a></p>
+
+      
+
+      <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 start -->
+      
+
+  <div class="declare" hidden="hidden"></div>
+
+
+      <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 end -->
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/articles/54788f73.html">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+<!-- laibili评论系统 -->
+
+
+
+
+
+
+  
+    <article id="post-Springmvc" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/articles/38a8d76a.html">Springmvc</a>
+    </h1>
+  
+
+        
+        <a href="/articles/38a8d76a.html" class="archive-article-date">
+  	<time datetime="2017-06-24T03:47:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>使用Struct和Spring开发web项目的问题：</p>
+<ol>
+<li>每次请求都要创建action，（scope=”prototype”）</li>
+<li>action类一成不变间接或直接继承ActionSupport，不能拓展</li>
+<li>action类中，接收参数要用实例变量和对应的set方法（用作依赖注入）</li>
+<li>struts.xml配置文件方式固定</li>
+</ol>
+<p>springmvc属于spring框架的后续产品，是表现层的产品</p>
+
+      
+
+      <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 start -->
+      
+
+  <div class="declare" hidden="hidden"></div>
+
+
+      <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 end -->
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Springmvc</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/articles/38a8d76a.html">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+<!-- laibili评论系统 -->
+
+
+
+
+
+
   
     <article id="post-单例模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -1043,101 +1251,9 @@
 
 
   
-    <article id="post-Java反射" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/articles/adc18de0.html">Java反射</a>
-    </h1>
-  
-
-        
-        <a href="/articles/adc18de0.html" class="archive-article-date">
-  	<time datetime="2017-03-21T11:14:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>当应用程序主动使用某个类时，系统会通过加载、连接、初始化3个步骤来对该类进行初始化。类的加载是指将类的class文件读入内存，并为之创建一个java.lang.Class对象</p>
-<h2 id="类初始化"><a href="#类初始化" class="headerlink" title="类初始化"></a>类初始化</h2>
-        
-          <a class="article-more-a" href="/articles/adc18de0.html#more">more >></a>
-        
-      
-
-      <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 start -->
-      
-
-  <div class="declare" hidden="hidden"></div>
-
-
-      <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 end -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">反射</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/articles/adc18de0.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-<!-- laibili评论系统 -->
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
     </nav>
   
 
@@ -1150,9 +1266,9 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 肖鹏
+    		&copy; 2016-2018  &hearts; 肖鹏
         <span id="busuanzi_container_site_pv">
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp站点访问<span id="busuanzi_value_site_pv"></span>次&nbsp|&nbsp
+            &nbsp&nbsp&nbsp&nbsp&nbsp站点访问<span id="busuanzi_value_site_pv"></span>次&nbsp|&nbsp
         </span>
         <span id="busuanzi_container_page_pv">
             文章访问<span id="busuanzi_value_page_pv"></span>次
@@ -1430,5 +1546,5 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
 
 </div>
   </div>
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":100,"height":200},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</body>
 </html>
