@@ -17,7 +17,7 @@
 <meta property="og:description" content="线性表线性结构是计算机程序设计中最常遇见的一种操作对象，也是数据结构中最简单、最重要的结构形式之一。简单地将，线性表（Linear List）是n个数据元素的有限序列（a1,a2,…,an）。n=0时称为空表。  线性表的特征：   对于长度为n(n&amp;gt;0)线性表,有且仅有一个开始结点a1，有且仅有一个终端结点an 当a=1,2,..,n-1时，ai仅有一个直接后继ai+1 当a=2,3,..">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www.xiaopeng.pro/img/读书笔记-数据结构/单链表-01.jpg">
-<meta property="og:updated_time" content="2018-11-12T06:41:00.730Z">
+<meta property="og:updated_time" content="2018-11-13T06:04:08.158Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="「数据结构」-6-线性表">
 <meta name="twitter:description" content="线性表线性结构是计算机程序设计中最常遇见的一种操作对象，也是数据结构中最简单、最重要的结构形式之一。简单地将，线性表（Linear List）是n个数据元素的有限序列（a1,a2,…,an）。n=0时称为空表。  线性表的特征：   对于长度为n(n&amp;gt;0)线性表,有且仅有一个开始结点a1，有且仅有一个终端结点an 当a=1,2,..,n-1时，ai仅有一个直接后继ai+1 当a=2,3,..">
@@ -44,11 +44,7 @@
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
     <div class="left-col" q-class="show:isShow">
       
-
-<div class="overlay">
-  <img src="/img/left_bgi.jpg"/ class="overlay">
-</div>
-
+<div class="overlay" style="background: #4d4d4d"></div>
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="http://xpengv.github.io" class="profilepic">
@@ -304,7 +300,7 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 单链表插入</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">linkedlist_insert</span><span class="params">(linkedlist *L,<span class="keyword">int</span> i,datatype value)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> j;</span><br><span class="line">    j = <span class="number">1</span>;</span><br><span class="line">    linkedlist * p, * s;</span><br><span class="line">    p = L;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(p &amp;&amp; j&lt;i)  <span class="comment">// 寻找第i个结点</span></span><br><span class="line">    &#123;</span><br><span class="line">        p = p-&gt;next;</span><br><span class="line">        j++;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(!p || j&gt;i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"insert linkedlist error...\r\n"</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    s = (linkedlist *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(linkedlist));  <span class="comment">// 生成新结点</span></span><br><span class="line">    s-&gt;data = value;</span><br><span class="line">    s-&gt;next = p-&gt;next;                             <span class="comment">// 新结点数据域，指针域赋值</span></span><br><span class="line">    </span><br><span class="line">    p-&gt;next = s;                                   <span class="comment">//p指向新结点</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="5-单链表删除"><a href="#5-单链表删除" class="headerlink" title="5. 单链表删除"></a>5. 单链表删除</h3><hr>
 
-<p>本文中的代码块见 <a href="https://github.com/xpengV/Data-Structure" target="_blank" rel="noopener"><code>「我的Github Data-Structure」</code></a>。</p>
+<p>本文中的代码块见 <a href="https://github.com/xpengV/Data-Structure" target="_blank" rel="noopener">「我的Github-数据结构」</a>。</p>
 
       
 
@@ -652,6 +648,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">链表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">JavaSE</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">����ʼ�</a>
               </li>
             
             <div class="clearfix"></div>

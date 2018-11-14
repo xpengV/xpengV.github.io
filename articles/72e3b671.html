@@ -17,7 +17,7 @@
 <meta property="og:description" content="在软件开发的过程中，实现某一个功能通常有多种算法或者策略，我们可以根据环境条件的不同来选取不同的算法或者策略来完成。  提供多个方法供客户端调用 将多种策略包装在一个方法中，通过if…else…来进行条件判断这两种方法我们都将至称为硬编码（Hard Coding）。第一种方法若修改了算法，那么客户端也要进行相应的修改；第二种将导致程序庞大不易维护。  1、解决方法将一个类经常改变或者可能改变的部分">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www.xiaopeng.pro/img/设计模式/策略模式/Strategy.png">
-<meta property="og:updated_time" content="2018-10-31T02:24:48.855Z">
+<meta property="og:updated_time" content="2018-11-13T05:54:06.029Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="策略模式">
 <meta name="twitter:description" content="在软件开发的过程中，实现某一个功能通常有多种算法或者策略，我们可以根据环境条件的不同来选取不同的算法或者策略来完成。  提供多个方法供客户端调用 将多种策略包装在一个方法中，通过if…else…来进行条件判断这两种方法我们都将至称为硬编码（Hard Coding）。第一种方法若修改了算法，那么客户端也要进行相应的修改；第二种将导致程序庞大不易维护。  1、解决方法将一个类经常改变或者可能改变的部分">
@@ -44,11 +44,7 @@
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
     <div class="left-col" q-class="show:isShow">
       
-
-<div class="overlay">
-  <img src="/img/left_bgi.jpg"/ class="overlay">
-</div>
-
+<div class="overlay" style="background: #4d4d4d"></div>
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="http://xpengv.github.io" class="profilepic">
@@ -401,38 +397,12 @@
 </aside>
 
 
-  
-
-  
-
-  
-
-  
-
-  
-
 
 <!-- laibili评论系统 -->
 
   
   
-  <div id="lv-container" data-id="city" data-uid="MTAyMC80MDQ0NS8xNjk3Mg==">
-	<script type="text/javascript">
-   (function(d, s) {
-       var j, e = d.getElementsByTagName(s)[0];
-
-       if (typeof LivereTower === 'function') { return; }
-
-       j = d.createElement(s);
-       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-       j.async = true;
-
-       e.parentNode.insertBefore(j, e);
-   })(document, 'script');
-	</script>
-<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
-</div>
-
+    <div class="lv-container"></div>
   
   
 
@@ -606,6 +576,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">链表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">JavaSE</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">����ʼ�</a>
               </li>
             
             <div class="clearfix"></div>
