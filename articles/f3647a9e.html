@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://www.xiaopeng.pro">
   <title>「Java程序设计」-I/O | 肖鹏</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、本章要点 字节流 字符流 对象序列化与反序列化 RandomAccessFile  1.字节流">
+  <meta name="description" content="一、本章要点 File FilenameFilter 字节流 字符流 代码实例 对象序列化与反序列化 延伸-装饰者模式">
 <meta name="keywords" content="读书笔记,JavaSE">
 <meta property="og:type" content="article">
 <meta property="og:title" content="「Java程序设计」-I&#x2F;O">
 <meta property="og:url" content="http://www.xiaopeng.pro/articles/f3647a9e.html">
 <meta property="og:site_name" content="肖鹏">
-<meta property="og:description" content="一、本章要点 字节流 字符流 对象序列化与反序列化 RandomAccessFile  1.字节流">
+<meta property="og:description" content="一、本章要点 File FilenameFilter 字节流 字符流 代码实例 对象序列化与反序列化 延伸-装饰者模式">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-11-19T02:14:07.565Z">
+<meta property="og:updated_time" content="2018-11-20T03:32:07.918Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="「Java程序设计」-I&#x2F;O">
-<meta name="twitter:description" content="一、本章要点 字节流 字符流 对象序列化与反序列化 RandomAccessFile  1.字节流">
+<meta name="twitter:description" content="一、本章要点 File FilenameFilter 字节流 字符流 代码实例 对象序列化与反序列化 延伸-装饰者模式">
   
   
     <link rel="icon" href="/img/avatar03.jpg">  <!-- 修改网站icon -->
@@ -186,12 +186,107 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="一、本章要点"><a href="#一、本章要点" class="headerlink" title="一、本章要点"></a>一、本章要点</h2><ol>
+<li>File</li>
+<li>FilenameFilter</li>
 <li>字节流</li>
 <li>字符流</li>
+<li>代码实例</li>
 <li>对象序列化与反序列化</li>
-<li>RandomAccessFile</li>
+<li>延伸-装饰者模式</li>
 </ol>
-<h3 id="1-字节流"><a href="#1-字节流" class="headerlink" title="1.字节流"></a>1.字节流</h3>
+<a id="more"></a>
+<h3 id="1-File"><a href="#1-File" class="headerlink" title="1.File"></a>1.File</h3><p>在Java程序中操作文件或目录，可以使用java.io.File类进行处理。File类提供了很多方法，常用的如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">func</th>
+<th style="text-align:left">desc</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">String getName()</td>
+<td style="text-align:left">返回文件名或者路径名</td>
+</tr>
+<tr>
+<td style="text-align:left">String getPath()</td>
+<td style="text-align:left">返回路径名</td>
+</tr>
+<tr>
+<td style="text-align:left">boolean renameTo(File newName)</td>
+<td style="text-align:left">重命名目录或文件</td>
+</tr>
+<tr>
+<td style="text-align:left">boolean exists()</td>
+<td style="text-align:left">判断目录或文件是否存在</td>
+</tr>
+<tr>
+<td style="text-align:left">boolean canWrite()</td>
+<td style="text-align:left">是否具有可写权限</td>
+</tr>
+<tr>
+<td style="text-align:left">boolean canRead()</td>
+<td style="text-align:left">是否具有可读权限</td>
+</tr>
+<tr>
+<td style="text-align:left">boolean isFile()</td>
+<td style="text-align:left">是文件而不是目录返回true</td>
+</tr>
+<tr>
+<td style="text-align:left">boolean isDirectory()</td>
+<td style="text-align:left">是目录而不是文件返回true</td>
+</tr>
+<tr>
+<td style="text-align:left">boolean mkdir()/mkdirs()</td>
+<td style="text-align:left">针对file路径创建一个目录，单层</td>
+</tr>
+<tr>
+<td style="text-align:left">File[] listFiles()</td>
+<td style="text-align:left">列出file对象下所有子文件</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-FilenameFilter"><a href="#2-FilenameFilter" class="headerlink" title="2.FilenameFilter"></a>2.FilenameFilter</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        File file = <span class="keyword">new</span> File(<span class="string">"."</span>);</span><br><span class="line">        String[] files = file.list(<span class="keyword">new</span> MyFileFilter());</span><br><span class="line">        <span class="keyword">for</span> (String str : files) &#123;</span><br><span class="line">            System.out.println(str);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyFileFilter</span> <span class="keyword">implements</span> <span class="title">FilenameFilter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">accept</span><span class="params">(File dir, String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name.endsWith(<span class="string">".java"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>文件过滤器，可以按照要求返回所需的某些文件。见<a href="http://www.xiaopeng.pro/articles/72e3b671.html">策略模式</a></p>
+<h3 id="3-字节流"><a href="#3-字节流" class="headerlink" title="3.字节流"></a>3.字节流</h3><p><strong>InputStream</strong></p>
+<ul>
+<li>int read() 从输入流中读取一个字节的数据，并返回读取的字节数据，到达文件末尾返回-1</li>
+<li>int read(byte[] b) 从输入流中最多读取b.length个字节的数据，并将其存储在字节数组b中，返回实际读取的字节数，到达文件末尾返回-1</li>
+<li>int read(byte[] b,int off,int len) 从输入流中读取最多len个字节的数据，并将其存储在b中。放入数组中时并不是从b[0]开始而是从b[off]开始。到达文件末尾返回-1</li>
+</ul>
+<p><strong>OutputStream</strong></p>
+<ul>
+<li>void write(int c) 将指定的字节写入到输出流中</li>
+<li>void write(byte[]/char[] buf) 将字节数组写入输出流中</li>
+<li>void write(byte[]/char[] buf,int off,int len) 将数组buf从off位置开始长度为len的数据写入输出流</li>
+<li>void flush() 刷新输出流并强制写出所有缓冲的输出字节</li>
+</ul>
+<h3 id="4-字符流"><a href="#4-字符流" class="headerlink" title="4. 字符流"></a>4. 字符流</h3><p><strong>Reader</strong></p>
+<ul>
+<li>int read() 从输入流中读取单个字符，并返回读取的字符数据</li>
+<li>int read(char[] cbuf) 从输入流中读取最多cbuf.length个字符数据，并将其存储在cbuf中，返回实际读取的字节数</li>
+<li>int read(char[] cbuf,int off,int len) </li>
+</ul>
+<p><strong>Writer</strong></p>
+<ul>
+<li>void write(String str) 将字符串str写入输出流</li>
+<li>void write(String str,int off,int len) 将字符串str从off开始，长度为len的字符输出到指定的输出流</li>
+</ul>
+<h3 id="5-代码实例"><a href="#5-代码实例" class="headerlink" title="5.代码实例"></a>5.代码实例</h3><ul>
+<li>使用FileInputStream读取文件的常用方式<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">readFile</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    FileInputStream fis = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    File f = <span class="keyword">new</span> File(<span class="string">"./src/a.txt"</span>);</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        fis = <span class="keyword">new</span> FileInputStream(f);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">byte</span>[] buf = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">4</span>];  <span class="comment">// 一次性读取buf.length个字节的数据</span></span><br><span class="line">    <span class="keyword">int</span> length = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">//将读取的字节数据装入byte数组中，返回的是读取的字节数；读至文件末尾返回 -1</span></span><br><span class="line">        <span class="keyword">while</span> ((length = fis.read(buf)) != -<span class="number">1</span>) &#123;  </span><br><span class="line">            <span class="comment">/**</span></span><br><span class="line"><span class="comment">             * read方法将数据读进byte数组采用覆盖的方式，而并非清空重新赋值的方式。</span></span><br><span class="line"><span class="comment">             * 故，在获取输出时要指定byte数组中有效的元素。</span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">            System.out.print(<span class="keyword">new</span> String(buf, <span class="number">0</span>, length));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (fis != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                fis.close();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>read方法将数据读进字节数组时采用的是覆盖的方式，故在构建字符串时需要指定length，否则会有垃圾数据。</p>
+<ul>
+<li>使用FileOutputStream写文件<br>write(int c)方法传入int类型的变量（4个字节），但是该方法只会将最低位的那个字节写入文件，其余的三个字节会被舍弃。二进制数：00000000-00000000-00000001-01100001（353），将353写入，但是文件中却只有低八位（97）。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">writeTest</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line"></span><br><span class="line">    FileOutputStream fos = <span class="keyword">null</span>;</span><br><span class="line">    FileInputStream fis = <span class="keyword">null</span>;</span><br><span class="line">    File file = <span class="keyword">new</span> File(<span class="string">"./src/b.txt"</span>);</span><br><span class="line">    fos = <span class="keyword">new</span> FileOutputStream(file);</span><br><span class="line">    fis = <span class="keyword">new</span> FileInputStream(file);</span><br><span class="line">    fos.write(<span class="number">353</span>);   <span class="comment">//00000000-00000000-00000001-01100001</span></span><br><span class="line">    <span class="keyword">byte</span>[] bytes = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">4</span>];</span><br><span class="line">    fis.read(bytes);</span><br><span class="line"></span><br><span class="line">    System.out.println(Arrays.toString(bytes));  <span class="comment">//输出：[97, 0, 0, 0]</span></span><br><span class="line"></span><br><span class="line">    fis.close();</span><br><span class="line">    fos.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="6-对象序列化与反序列化"><a href="#6-对象序列化与反序列化" class="headerlink" title="6.对象序列化与反序列化"></a>6.对象序列化与反序列化</h3><p>并不是所有对象都可以写入到输出流，可以写入输出流中的对象称为可序列化的(serializable)。可序列化对象的类必须实现java.io.Serializable接口，它是一种标记性接口。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line"></span><br><span class="line">    String str = <span class="string">"Java程序设计"</span>;</span><br><span class="line">    ObjectOutputStream oos = <span class="keyword">new</span> ObjectOutputStream(<span class="keyword">new</span> FileOutputStream(<span class="string">"./str.dat"</span>,<span class="keyword">true</span>));</span><br><span class="line">    oos.writeObject(str);<span class="comment">//序列化</span></span><br><span class="line"></span><br><span class="line">    oos.close();</span><br><span class="line"></span><br><span class="line">    ObjectInputStream ois = <span class="keyword">new</span> ObjectInputStream(<span class="keyword">new</span> FileInputStream(<span class="string">"./str.dat"</span>));</span><br><span class="line">    String resStr = (String) ois.readObject();   <span class="comment">//对象的反序列化</span></span><br><span class="line"></span><br><span class="line">    System.out.println(resStr);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对象序列化的机制写入的内容是：对象的类、类签名、以及非瞬态和非静态的值（静态的值在方法区）。序列化的目标是将对象保存在磁盘中，或允许在网络中直接传输对象。这在很多框架中很常见，例如web开发中服务器会对客户端对象进行临时存储，短时间内即使宕机也能恢复数据。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果一个对象是Serializable的实例，但它包含一个不能被序列化的数据域，那么整个对象都不可被序列化。为了使该对象是可序列化的，需要给这些数据域加上关键字<strong>transient</strong>，告诉Java虚拟机将对象写入对象流时忽略这些数据域。</p>
+<h3 id="7-延伸-装饰者模式"><a href="#7-延伸-装饰者模式" class="headerlink" title="7. 延伸-装饰者模式"></a>7. 延伸-装饰者模式</h3><p>装饰模式指的是在不必改变原类文件和继承关系的情况下，动态地扩展一个对象的功能。它是通过创建一个包装对象，也就是装饰者来包裹真实的对象，以达到装饰的目的。</p>
+<p>Java I/O 系统的设计是典型的装饰者模式：<br>例如java.io.LineNumberReader通过装饰java.io.BufferedReader，实现可以按行读取文本，jdk中LineNumberReader的read()方法代码大致如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//......</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">readLine</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    <span class="keyword">synchronized</span> (lock) &#123;</span><br><span class="line">        String l = <span class="keyword">super</span>.readLine(skipLF);</span><br><span class="line">        skipLF = <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">if</span> (l != <span class="keyword">null</span>)</span><br><span class="line">            lineNumber++;</span><br><span class="line">        <span class="keyword">return</span> l;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//......</span></span><br></pre></td></tr></table></figure></p>
+<p>更多关于装饰者模式的细节见：<a href="http://www.xiaopeng.pro/articles/a708a60d.html">我的博客-装饰者模式</a></p>
+
       
 
       <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 start -->
