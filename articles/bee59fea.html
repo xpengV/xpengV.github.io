@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="肖鹏">
 <meta property="og:description" content="一、本章要点 字符串类String String/StringBuilder/StringBuffer 文本I/O(PrintWrite/Scanner)">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-11-14T08:11:18.396Z">
+<meta property="og:updated_time" content="2018-11-19T06:56:17.735Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="「Java程序设计」-字符串和文本IO">
 <meta name="twitter:description" content="一、本章要点 字符串类String String/StringBuilder/StringBuffer 文本I/O(PrintWrite/Scanner)">
@@ -205,7 +205,7 @@
 </ol>
 <h3 id="2-String-StringBuilder-StringBuffer"><a href="#2-String-StringBuilder-StringBuffer" class="headerlink" title="2.String/StringBuilder/StringBuffer"></a>2.String/StringBuilder/StringBuffer</h3><p>使用下面这段代码描述了String的创建过程：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String str=<span class="string">"abc"</span>;</span><br><span class="line">String str=<span class="string">"abcde"</span>;</span><br></pre></td></tr></table></figure></p>
 <ul>
-<li>效率<br>首先创建一个String对象str，并将”abc”赋值给str，然后JVM又创建一个新对象也名为str，最后将原来的str的值+”de”再赋值给新的str变量，原来堆区的”abc”没有被引用会被GC回收。StringBuilder/StringBuffer的对象是变量，对字符串操作很少进行垃圾回收和对象创建，所有效率快（StringBuiler&gt;StringBuffer&gt;String）。</li>
+<li>效率<br>首先创建一个String对象str，并将”abc”赋值给str，然后JVM又创建一个新对象也名为str，最后将原来的str的值+”de”再赋值给新的str变量，原来堆区的”abc”没有被引用会被GC回收。StringBuilder/StringBuffer的对象是变量，对字符串操作很少进行垃圾回收和对象创建，所有效率快（StringBuilder&gt;StringBuffer&gt;String）。</li>
 <li>线程安全性<br>StringBuilder是线程不安全的，StringBuffer中很多方法都使用synchronized修饰，保证线程是安全的。</li>
 <li>总结<br>所以String适合少量字符串操作；StringBuilder适合单线程下在字符串缓冲区进行大量字符串操作；StringBuffer适合多线程下在字符串缓冲区进行大量字符串操作。</li>
 </ul>
@@ -514,11 +514,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Springmvc</a>
+                <a href="javascript:void(0)" class="js-tag color1">sql优化</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">博客搭建</a>
+                <a href="javascript:void(0)" class="js-tag color5">JDBC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Springmvc</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -526,7 +530,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">JDBC</a>
+                <a href="javascript:void(0)" class="js-tag color5">博客搭建</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -542,15 +546,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
