@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://www.xiaopeng.pro">
   <title>Oracle-sql优化 | 肖鹏</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前段时间去西南某项目做sql优化的相关工作，期间查询了很多资料。现在总结下sql性能优化相关的方法以便以后用到。">
+  <meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;前段时间去西南某项目做sql优化和性能测试的相关工作，期间查询了很多资料。现在总结下sql性能优化相关的知识以便以后用到。1. sql优化相关2. 硬解析和软解析3. 执行计划">
 <meta name="keywords" content="sql优化">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Oracle-sql优化">
 <meta property="og:url" content="http://www.xiaopeng.pro/articles/12c134cc.html">
 <meta property="og:site_name" content="肖鹏">
-<meta property="og:description" content="前段时间去西南某项目做sql优化的相关工作，期间查询了很多资料。现在总结下sql性能优化相关的方法以便以后用到。">
+<meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;前段时间去西南某项目做sql优化和性能测试的相关工作，期间查询了很多资料。现在总结下sql性能优化相关的知识以便以后用到。1. sql优化相关2. 硬解析和软解析3. 执行计划">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-11-19T06:48:52.021Z">
+<meta property="og:updated_time" content="2018-12-10T08:42:49.228Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Oracle-sql优化">
-<meta name="twitter:description" content="前段时间去西南某项目做sql优化的相关工作，期间查询了很多资料。现在总结下sql性能优化相关的方法以便以后用到。">
+<meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;前段时间去西南某项目做sql优化和性能测试的相关工作，期间查询了很多资料。现在总结下sql性能优化相关的知识以便以后用到。1. sql优化相关2. 硬解析和软解析3. 执行计划">
   
   
     <link rel="icon" href="/img/avatar03.jpg">  <!-- 修改网站icon -->
@@ -185,7 +185,93 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>前段时间去西南某项目做sql优化的相关工作，期间查询了很多资料。现在总结下sql性能优化相关的方法以便以后用到。</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;前段时间去西南某项目做sql优化和性能测试的相关工作，期间查询了很多资料。现在总结下sql性能优化相关的知识以便以后用到。<br><span id="anchor"></span><br><a href="#title_1">1. sql优化相关</a><br><a href="#title_2">2. 硬解析和软解析</a><br><a href="#title_3">3. 执行计划</a><br><a id="more"></a></p>
+<h1 id="一、sql优化相关"><a href="#一、sql优化相关" class="headerlink" title="一、sql优化相关"></a><span id="title_1"><a href="#anchor">一、sql优化相关</a></span></h1><hr>
+
+<p>1、<strong>where子句的连接顺序</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Oracle采用自下而上的顺序解析where子句，所以可以过滤掉较多记录数的条件应该写在where子句的末尾。<br>2、<strong>select子句尽量避免使用*</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通过*会查询数据库字典来将其转换成对应的列名，带来额外的查询开销。推荐在查询时列出column。<br>3、 <strong>整合简单的查询语句</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果有几个简单的查询语句，可以将他们整合到一个连接查询中。这样可以减少数据库IO开销。<br>4、 <strong>使用Truncate而非Delete</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;使用delete删除记录时，Oracle会保存删除信息以备恢复。Truncate删除时不保存回滚信息不能恢复，效率更快。有外键约束时不能删除数据或删表。<br>5、 <strong>使用(not)exists替代(not)in</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在针对许多基础表的查询中，为了满足一个条件，往往需要对另一个表进行联接。使用exists/not exists可以提高查询效率。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> loan_no,invoice_type,outstanding </span><br><span class="line">  <span class="keyword">from</span> cl_invoice a</span><br><span class="line"> <span class="keyword">where</span> outstanding &gt; <span class="number">0</span></span><br><span class="line">   <span class="keyword">and</span> <span class="keyword">exists</span> (<span class="keyword">select</span> <span class="number">1</span> <span class="keyword">from</span> cl_loan <span class="keyword">where</span> loan_no = a.loan_no <span class="keyword">and</span> loan_type = <span class="string">'200'</span>);</span><br></pre></td></tr></table></figure></p>
+<p>6、 <strong>用表连接替换exists</strong><br>7、 <strong>避免在索引上使用计算</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;where子句中不要对索引进行计算，否则会导致索引失效进行全表扫描。同不要在where子句等号的左边进行函数算数和其他表达式运算。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> loan_key,borrower <span class="keyword">from</span> cl_drawdown_tbl <span class="keyword">where</span> dd_key / <span class="number">100</span> &gt;= <span class="number">20</span>;  <span class="comment">-- 低效</span></span><br><span class="line"><span class="keyword">select</span> loan_key,borrower <span class="keyword">from</span> cl_drawdown_tbl <span class="keyword">where</span> dd_key &gt;= <span class="number">20</span> * <span class="number">100</span>;  <span class="comment">-- 高效</span></span><br></pre></td></tr></table></figure></p>
+<p>8、<strong>where子句中不要在索引列上使用not</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;同上，会使索引失效。<br>9、<strong>避免在索引列上使用is null和is not null</strong><br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> client_short <span class="keyword">from</span> fm_client <span class="keyword">where</span> client_no <span class="keyword">is</span> <span class="literal">null</span>;</span><br></pre></td></tr></table></figure></p>
+<p>10、<strong>用&ge;代替&gt;</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;使用&ge;会使扫描的记录数更少效率更高。<br>11、<strong>用union替代or(适用于索引列)</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通常情况下，用union替换where子句中的or更好。对索引列使用or将会造成全表扫描。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> cl_loan <span class="keyword">where</span> loan_key = <span class="number">89</span> <span class="keyword">or</span> borrower = <span class="string">'10000002918'</span>;  <span class="comment">-- 低效会进行全表扫描</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> cl_loan <span class="keyword">where</span> loan_key = <span class="number">89</span></span><br><span class="line"><span class="keyword">UNION</span> </span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> cl_loan <span class="keyword">where</span> borrower = <span class="string">'10000002918'</span>;  <span class="comment">-- 高效</span></span><br></pre></td></tr></table></figure></p>
+<p>12、<strong>优化group by</strong></p>
+<ul>
+<li>可以通过提前将不需要的记录过滤掉，来提高group by语句的效率。（用where替换having）</li>
+<li>对于还要继续进行被查询的结果集，先不要做group by分组操作。<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> job,<span class="keyword">avg</span>(sal) <span class="keyword">from</span> emp <span class="keyword">group</span> <span class="keyword">by</span> job <span class="keyword">HAVING</span> job = <span class="string">'PRESIDENT'</span> <span class="keyword">or</span> job = <span class="string">'MANAGER'</span>;   <span class="comment">--低效</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> job,<span class="keyword">avg</span>(sal) <span class="keyword">from</span> emp <span class="keyword">where</span> job = <span class="string">'PRESIDENT'</span> <span class="keyword">or</span> job = <span class="string">'MANAGER'</span> <span class="keyword">group</span> <span class="keyword">by</span> job;    <span class="comment">--高效</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>13、<strong>总是使用索引的第一列</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果索引建立在多个列上，只有当它的第一个列被where子句引用时，语句才会选择使用该索引。这是一条简单而重要的规则，当仅引用索引的第二个列时,优化器使用了全表扫描而忽略了索引。<br>14、<strong>避免使用耗费资源的操作</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;带有DISTINCT,UNION,MINUS,ORDER BY的SQL语句会启动SQL引擎执行耗费资源的排序(SORT)功能。在非必要的情况下应减少使用。<br>15、<strong>sql语句尽量使用大写</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;防止硬解析。<br>16、<strong>利用rowid提升update性能</strong><br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> dba ta <span class="keyword">set</span> prov_code = (<span class="keyword">select</span> area_code <span class="keyword">from</span> dave tb <span class="keyword">where</span> ta.id = tb.id);</span><br></pre></td></tr></table></figure></p>
+<p>查看update期间session执行时间：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">sid</span>,target,time_remaining,elapsed_seconds,message,sql_id <span class="keyword">from</span> v$session_longops <span class="keyword">where</span> <span class="keyword">sid</span> = <span class="number">138</span>;  <span class="comment">-- 耗时长</span></span><br></pre></td></tr></table></figure></p>
+<p>利用rowid提升update性能：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DECLARE</span> </span><br><span class="line">   <span class="keyword">CURSOR</span> c_cur <span class="keyword">is</span> </span><br><span class="line">     <span class="keyword">SELECT</span> a.area_code, b.ROWID ROW_ID</span><br><span class="line">       <span class="keyword">FROM</span> dave a, dba b</span><br><span class="line">      <span class="keyword">WHERE</span> a.id = b.id</span><br><span class="line">   <span class="keyword">ORDER</span> <span class="keyword">BY</span> b.ROWID;  <span class="comment">-- 对于大表的update，按照rowid排序是必要的。</span></span><br><span class="line">                  </span><br><span class="line">   v_counter NUMBER;</span><br><span class="line"><span class="keyword">BEGIN</span> </span><br><span class="line">   v_counter := <span class="number">0</span>;</span><br><span class="line">   FOR row IN cur LOOP</span><br><span class="line">      <span class="keyword">UPDATE</span> dba</span><br><span class="line">         <span class="keyword">SET</span> prov_code = row.area_code</span><br><span class="line">       <span class="keyword">WHERE</span> <span class="keyword">ROWID</span> = row.ROW_ID;</span><br><span class="line">      v_counter := v_counter + 1;</span><br><span class="line">      <span class="comment">-- 分次提交以免事务较大</span></span><br><span class="line">      IF (v_counter &gt;= 1000) </span><br><span class="line">      THEN</span><br><span class="line">          <span class="keyword">COMMIT</span>;</span><br><span class="line">          v_counter := 0;</span><br><span class="line">      <span class="keyword">END</span> <span class="keyword">IF</span>;</span><br><span class="line">    <span class="keyword">END</span> <span class="keyword">LOOP</span>;</span><br><span class="line">    <span class="keyword">COMMIT</span>;</span><br><span class="line"><span class="keyword">END</span>;</span><br></pre></td></tr></table></figure></p>
+<h1 id="二、硬解析和软解析"><a href="#二、硬解析和软解析" class="headerlink" title="二、硬解析和软解析"></a><span id="title_2"><a href="#anchor">二、硬解析和软解析</a></span></h1><hr>
+
+<p><strong>Oracle对sql语句进行处理包含以下几个步骤：</strong></p>
+<ol>
+<li>语法检查（syntax check）：检查sql的拼写是否正确</li>
+<li>语义检查（semantic check）：如检查执行sql的用户权限等</li>
+<li>对sql进行解析（prase）：对sql进行解析，生成解析树和执行计划</li>
+<li>执行sql，返回结果</li>
+</ol>
+<p><strong>第三步sql解析分为硬解析和软解析：</strong></p>
+<ul>
+<li>硬解析：在Share pool中找不到与该sql相匹配的执行计划时会重新生成解析树和执行计划。</li>
+<li>软解析：如果在Shared Pool中找到了与之完全相同的sql解析好的结果后会跳过生成解析树和执行计划。</li>
+</ul>
+<p><span style="color:red">创建解析树和执行计划有巨大的开销，所以应该极力避免硬解析。在开发中尽量保持sql代码的一致性和绑定变量。</span></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Oracle会对sql语句进行HASH运算计算hash值，再与共享池中的hash值逐一比较。可以通过访问v$sql、v$sqlarea、v$sqltext等数据字典中的hash_value列得出<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> dd_key,invoice_type,due_date,billed_amt,outstanding <span class="keyword">from</span> cl_invoice_tbl <span class="keyword">where</span> dd_key = <span class="number">6295100</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> address,hash_value,executions,sql_text <span class="keyword">from</span> v$<span class="keyword">sql</span> <span class="keyword">where</span> <span class="keyword">upper</span>(sql_text) <span class="keyword">like</span> <span class="string">'%SELECT DD_KEY,INVOICE_TYPE,DUE_DATE,BILLED_AMT,OUTSTANDING FROM CL_INVOICE_TBL WHERE DD_KEY = 6295100%'</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ADDRESS            HASH_VALUE    EXECUTIONS    SQL_TEXT</span><br><span class="line"><span class="comment">----------------------------------------------------</span></span><br><span class="line">00000000D3AA8D60   2347740352    1             select...</span><br></pre></td></tr></table></figure></p>
+<p><strong>尽量保持sql语句的一致性：</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;例如 select empno from emp; 和 select empno from Emp; 尽管区别只是查询的表对象使用了大小写，但是会使用硬解析产生不同的执行计划。</p>
+<p><strong>绑定变量：</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;select empname from emp where empno = 7369; 和 select empname from emp where empno = 7788; 只是where子句中的条件不同，依旧会产生不同的执行计划。<br>绑定变量（bind var）是指在DML语句中使用一个占位符，即使用<strong> : </strong>后面紧随变量名的方式，形如：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> empname <span class="keyword">from</span> emp <span class="keyword">where</span> empno = :v_empno;</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在绑定变量后，变量值在查询时提供。该查询只编译一次，随后会把查询计划缓存在共享池中，后续类似的查询便能使用软解析。</p>
+<h1 id="三、执行计划"><a href="#三、执行计划" class="headerlink" title="三、执行计划"></a><span id="title_3"><a href="#anchor">三、执行计划</a></span></h1><p><hr><br>Oracle执行计划是对一条查询语句执行过程或访问路径的描述。</p>
+<ul>
+<li>执行计划的常用列字段含义：</li>
+</ul>
+<ol>
+<li>基数（Rows）:当前操作返回结果集的行数。</li>
+<li>字节（Bytes）:执行该步骤返回的字节数。</li>
+<li>耗费（Cost-%CPU）:执行成本，用于说明sql执行的开销，越小越好。</li>
+<li>时间（Time）:该操作大约耗时。</li>
+</ol>
+<ul>
+<li><p>执行顺序<br>&nbsp;&nbsp;&nbsp;&nbsp;根据Operation缩进来判断，缩进最多的最先执行，缩进相同时，最上面的最先执行。</p>
+</li>
+<li><p>表的访问方式<br>1、TABLE ACCESS FULL（全表扫描）<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Oracle读取表中的所有行，并逐一检查是否满足where限制条件。数据量太大的表不建议使用全表扫描，除非提取的记录数占全表10%左右。<br>2、TABLE ACCESS BY ROWID（通过ROWID获取数据）<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ROWID是由Oracle自动加在表中每行最后的一列伪列，一旦一行数据插入后，则其对应的ROWID在该行的生命周期内是唯一的，即使发生行迁移，该行的ROWID值也不变。通过ROWID可以快速定位到目标记录上，这是Oracle中存取单行数据<strong>最快</strong>的方法<br>3、TABLE ACCESS BY INDEX SCAN（索引扫描）</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>分类</th>
+<th>描述</th>
+<th>说明 </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>INDEX UNIQUE SCAN</td>
+<td>索引唯一扫描</td>
+<td><span style="font-size:10px">针对唯一性索引，每次最多返回一条记录.表中某个字段存在unique、primary key约束时，通常使用唯一索引扫描<br><span></span></span></td>
+</tr>
+<tr>
+<td>INDEX RANGE SCAN</td>
+<td>索引范围扫描</td>
+<td><span style="font-size:10px"><span></span></span></td>
+</tr>
+<tr>
+<td>INDEX FULL SCAN</td>
+<td>索引全扫描</td>
+<td><span style="font-size:10px"><span></span></span></td>
+</tr>
+<tr>
+<td>INDEX FAST FULL SCAN</td>
+<td>索引快速扫描</td>
+<td><span style="font-size:10px"><span></span></span></td>
+</tr>
+<tr>
+<td>INDEX SKIP SCAN</td>
+<td>索引跳跃扫描</td>
+<td><span style="font-size:10px"><span></span></span></td>
+</tr>
+</tbody>
+</table>
 
       
 
