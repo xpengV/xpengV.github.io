@@ -8,19 +8,19 @@
   <link rel="dns-prefetch" href="http://www.xiaopeng.pro">
   <title>「Java程序设计」-多线程 | 肖鹏</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、本章要点1. 线程的创建2. 线程与进程的区别3. 线程的生命周期4. 线程安全问题">
+  <meta name="description" content="一、本章要点1. 线程的创建2. 线程与进程的区别3. 线程的生命周期4. 线程控制5. 线程安全问题6. 线程间通信7. 线程池8. 总结">
 <meta name="keywords" content="读书笔记,JavaSE">
 <meta property="og:type" content="article">
 <meta property="og:title" content="「Java程序设计」-多线程">
 <meta property="og:url" content="http://www.xiaopeng.pro/articles/770e889a.html">
 <meta property="og:site_name" content="肖鹏">
-<meta property="og:description" content="一、本章要点1. 线程的创建2. 线程与进程的区别3. 线程的生命周期4. 线程安全问题">
+<meta property="og:description" content="一、本章要点1. 线程的创建2. 线程与进程的区别3. 线程的生命周期4. 线程控制5. 线程安全问题6. 线程间通信7. 线程池8. 总结">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www.xiaopeng.pro/img/「Java程序设计」-多线程-01.png">
-<meta property="og:updated_time" content="2018-12-17T13:05:27.606Z">
+<meta property="og:updated_time" content="2018-12-19T11:51:43.307Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="「Java程序设计」-多线程">
-<meta name="twitter:description" content="一、本章要点1. 线程的创建2. 线程与进程的区别3. 线程的生命周期4. 线程安全问题">
+<meta name="twitter:description" content="一、本章要点1. 线程的创建2. 线程与进程的区别3. 线程的生命周期4. 线程控制5. 线程安全问题6. 线程间通信7. 线程池8. 总结">
 <meta name="twitter:image" content="http://www.xiaopeng.pro/img/「Java程序设计」-多线程-01.png">
   
   
@@ -187,7 +187,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一、本章要点"><a href="#一、本章要点" class="headerlink" title="一、本章要点"></a><span id="anchor">一、本章要点</span></h2><p><a href="#title_1">1. 线程的创建</a><br><a href="#titie_2">2. 线程与进程的区别</a><br><a href="#title_3">3. 线程的生命周期</a><br><a href="#title_4">4. 线程安全问题</a></p>
+        <h2 id="一、本章要点"><a href="#一、本章要点" class="headerlink" title="一、本章要点"></a><span id="anchor">一、本章要点</span></h2><p><a href="#title_1">1. 线程的创建</a><br><a href="#titie_2">2. 线程与进程的区别</a><br><a href="#title_3">3. 线程的生命周期</a><br><a href="#title_4">4. 线程控制</a><br><a href="#title_5">5. 线程安全问题</a><br><a href="#title_6">6. 线程间通信</a><br><a href="#title_7">7. 线程池</a><br><a href="#title_8">8. 总结</a></p>
 <a id="more"></a>
 <h3 id="1-线程的创建"><a href="#1-线程的创建" class="headerlink" title="1.线程的创建"></a><span id="title_1"><a href="#anchor">1.线程的创建</a></span></h3><p><strong>1. 扩展java.lang.Thread类</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyThread</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String threadName;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyThread</span><span class="params">(String _threadName)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.threadName = _threadName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">100</span>;i++)&#123;</span><br><span class="line">            System.out.print(threadName + <span class="string">"i = "</span> + i);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">20</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        MyThread t1 = <span class="keyword">new</span> MyThread(<span class="string">"thread-A"</span>);</span><br><span class="line">        MyThread t2 = <span class="keyword">new</span> MyThread(<span class="string">"thread-B"</span>);</span><br><span class="line">        t1.start();</span><br><span class="line">        t2.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p><span style="font-size:12px"><br>输出：<br>thread-Ai = 0<br>thread-Bi = 0<br>thread-Ai = 1<br>thread-Bi = 1<br>thread-Bi = 2<br>thread-Ai = 2<br>thread-Bi = 3<br>thread-Ai = 3<br>thread-Bi = 4<br>thread-Ai = 4<br></span></p>
@@ -210,8 +210,49 @@
 <li>当线程失去处理器资源或者调用yield()方法，线程会回到就绪状态。</li>
 <li>运行—&gt;阻塞<br>&nbsp;&nbsp;&nbsp;&nbsp;①、调用sleep()方法主动放弃处理器资源<br>&nbsp;&nbsp;&nbsp;&nbsp;②、线程调用阻塞式IO方法，在该方法返回前，该线程被阻塞<br>&nbsp;&nbsp;&nbsp;&nbsp;③、线程在等待某个通知notify<br>&nbsp;&nbsp;&nbsp;&nbsp;④、调用了suspend()方法将该线程挂起，易死锁避免使用</li>
 <li>阻塞—&gt;就绪<br>&nbsp;&nbsp;&nbsp;&nbsp;①、sleep()方法到了指定的时间<br>&nbsp;&nbsp;&nbsp;&nbsp;②、阻塞式IO方法已经返回<br>&nbsp;&nbsp;&nbsp;&nbsp;③、线程正在等待通知，正好其他线程发出一个通知（不一定）<br>&nbsp;&nbsp;&nbsp;&nbsp;④、处于阻塞状态的线程被调用resume()方法</li>
+<li>死亡<br>&nbsp;&nbsp;&nbsp;&nbsp;①、run()方法执行完毕，线程正常结束<br>&nbsp;&nbsp;&nbsp;&nbsp;②、线程抛出一个未捕获的异常<br>&nbsp;&nbsp;&nbsp;&nbsp;③、调用stop()方法结束线程，易死锁不推荐使用<br>&nbsp;&nbsp;&nbsp;&nbsp;④、可以使用isAlive()方法判断，当线程处于就绪、运行、阻塞时返回true；处于新建、死亡状态时返回false</li>
 </ol>
-<h3 id="4-线程安全问题"><a href="#4-线程安全问题" class="headerlink" title="4. 线程安全问题"></a><span id="title_4"><a href="#anchor">4. 线程安全问题</a></span></h3>
+<h3 id="4-线程控制"><a href="#4-线程控制" class="headerlink" title="4. 线程控制"></a><span id="title_4"><a href="#anchor">4. 线程控制</a></span></h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Java提供了便捷的api来控制线程的执行。</p>
+<ul>
+<li><strong>join线程</strong>：让一个线程等待另一个线程结束<br>&nbsp;&nbsp;&nbsp;&nbsp;在某个线程中调用其它线程的join()方法时，调用线程会被阻塞，直到被join()方法加入的线程执行完毕为止。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JoinTest</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">0</span>;i&lt;<span class="number">5</span>;i++)&#123;</span><br><span class="line">            System.out.println(<span class="string">"join-thread: "</span>+i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j&lt;<span class="number">6</span>;j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(j == <span class="number">2</span>)&#123;</span><br><span class="line">                JoinTest joinTest = <span class="keyword">new</span> JoinTest();</span><br><span class="line">                joinTest.start();</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    joinTest.join();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(<span class="string">"main-thread: "</span>+j);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><span style="font-size:12px"><br>输出：<br>main-thread: 0<br>main-thread: 1<br><span style="color:red">join-thread: 0<br>join-thread: 1<br>join-thread: 2<br>join-thread: 3<br>join-thread: 4</span><br>main-thread: 2<br>main-thread: 3<br>main-thread: 4<br>main-thread: 5<br></span><br><strong>join()</strong>方法有以下三种重载：<br>①、join()等待被加入的线程执行完毕。<br>②、join(long millis)等待被加入的线程millis毫秒。如果在时间之内仍然没有执行完毕，则不再等待。<br>③、join(long millis,int nanos)等待被加入的线程millis毫秒+nanos毫微秒。</p>
+<ul>
+<li>守护线程(Daemon Thread)<br>&nbsp;&nbsp;&nbsp;&nbsp;守护线程只在后台运行，它的任务是为其他线程提供服务。<strong>特征：当所有的前台线程都死亡，守护线程也会死亡。</strong>调用线程的setDaemon(true)方法可以将线程设置为守护线程。</li>
+<li>线程睡眠(sleep)<br>&nbsp;&nbsp;&nbsp;&nbsp;如果想让当前正在执行的线程暂停一段时间，并进入阻塞状态。则可以调用Thread类的静态方法<em>sleep()</em>。在睡眠的时间段内，线程始终不会获得执行机会，即使系统中没有其他线程在执行。</li>
+<li>线程让步(yield)<br>&nbsp;&nbsp;&nbsp;&nbsp;yield与sleep同样都是Thread类的静态方法，都可以让线程暂停，<strong>但是yield不会让线程进入阻塞状态，只是将线程置于就绪状态。</strong>如果线程得到执行资源那么它会继续执行。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>sleep</th>
+<th>yield</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span style="font-size:14px">将线程置于阻塞状态直到睡眠结束</span></td>
+<td><span style="font-size:14px">将线程置于就绪状态</span></td>
+</tr>
+<tr>
+<td><span style="font-size:14px">暂停当前线程后，会给其他线程执行机会（不考虑线程优先级）</span></td>
+<td><span style="font-size:14px">只会给线程优先级相同或者优先级更高的线程执行机会</span></td>
+</tr>
+<tr>
+<td><span style="font-size:14px">抛出InterruptedException异常，需要处理</span></td>
+<td><span style="font-size:14px">没有声明任何异常</span></td>
+</tr>
+<tr>
+<td><span style="font-size:14px">可移植性好，不推荐使用yield来控制并发线程的执行</span></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>线程优先级<br>&nbsp;&nbsp;&nbsp;&nbsp;Thread类提供方法setPriority(int level) <em>(1&le;level&le;10)</em>方法来设置线程的优先级。Thread.MAX_PRIORITY、Thread.NORM_PRIORITY、Thread.MIN_PRIORITY。</li>
+</ul>
+<h3 id="5-线程安全问题"><a href="#5-线程安全问题" class="headerlink" title="5. 线程安全问题"></a><span id="title_5"><a href="#anchor">5. 线程安全问题</a></span></h3><h3 id="6-线程间通信"><a href="#6-线程间通信" class="headerlink" title="6. 线程间通信"></a><span id="title_6"><a href="#anchor">6. 线程间通信</a></span></h3><h3 id="7-线程池"><a href="#7-线程池" class="headerlink" title="7. 线程池"></a><span id="title_7"><a href="#anchor">7. 线程池</a></span></h3><h3 id="8-总结"><a href="#8-总结" class="headerlink" title="8. 总结"></a><span id="title_8"><a href="#anchor">8. 总结</a></span></h3>
       
 
       <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 start -->
