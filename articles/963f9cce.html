@@ -6,20 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.xiaopeng.pro">
-  <title>redis安装与常用命令 | 肖鹏</title>
+  <title>简历 | 肖鹏</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="redis是一个高性能的key-Value非关系型数据库。它具有以下特点：  支持数据持久化 redis不仅支持字符串类型数据，同时支持list、set、zset、hash等数据结构的存储 redis支持数据备份 性能极高，读写速度接近100000次/s redis数据库的操作具有原子性（数据库事务控制：要么全部成功，要么全部失败）">
-<meta name="keywords" content="redis">
+  <meta name="description" content="1. 基本信息2. 专业技能3. 教育经历4. 工作经历5. 项目经历6. 自我评价">
 <meta property="og:type" content="article">
-<meta property="og:title" content="redis安装与常用命令">
-<meta property="og:url" content="http://www.xiaopeng.pro/articles/6d22a564.html">
+<meta property="og:title" content="简历">
+<meta property="og:url" content="http://www.xiaopeng.pro/articles/963f9cce.html">
 <meta property="og:site_name" content="肖鹏">
-<meta property="og:description" content="redis是一个高性能的key-Value非关系型数据库。它具有以下特点：  支持数据持久化 redis不仅支持字符串类型数据，同时支持list、set、zset、hash等数据结构的存储 redis支持数据备份 性能极高，读写速度接近100000次/s redis数据库的操作具有原子性（数据库事务控制：要么全部成功，要么全部失败）">
+<meta property="og:description" content="1. 基本信息2. 专业技能3. 教育经历4. 工作经历5. 项目经历6. 自我评价">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-11-13T05:52:54.115Z">
+<meta property="og:updated_time" content="2018-12-29T08:04:44.810Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="redis安装与常用命令">
-<meta name="twitter:description" content="redis是一个高性能的key-Value非关系型数据库。它具有以下特点：  支持数据持久化 redis不仅支持字符串类型数据，同时支持list、set、zset、hash等数据结构的存储 redis支持数据备份 性能极高，读写速度接近100000次/s redis数据库的操作具有原子性（数据库事务控制：要么全部成功，要么全部失败）">
+<meta name="twitter:title" content="简历">
+<meta name="twitter:description" content="1. 基本信息2. 专业技能3. 教育经历4. 工作经历5. 项目经历6. 自我评价">
   
   
     <link rel="icon" href="/img/avatar03.jpg">  <!-- 修改网站icon -->
@@ -165,313 +164,331 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-redis安装与常用命令" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-简历" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      redis安装与常用命令
+      简历
     </h1>
   
 
         
-        <a href="/articles/6d22a564.html" class="archive-article-date">
-  	<time datetime="2017-11-04T02:15:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-04</time>
+        <a href="/articles/963f9cce.html" class="archive-article-date">
+  	<time datetime="2018-11-20T05:43:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-20</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>redis是一个高性能的key-Value非关系型数据库。它具有以下特点：</p>
-<ol>
-<li>支持数据持久化</li>
-<li>redis不仅支持字符串类型数据，同时支持list、set、zset、hash等数据结构的存储</li>
-<li>redis支持数据备份</li>
-<li>性能极高，读写速度接近100000次/s</li>
-<li>redis数据库的操作具有原子性（数据库事务控制：要么全部成功，要么全部失败）</li>
-</ol>
-<a id="more"></a>
-<h1 id="redis的安装"><a href="#redis的安装" class="headerlink" title="redis的安装"></a>redis的安装</h1><p>Mac下的安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">进入官网[http://redis.io/](http://redis.io/)下载redis-3.2.0.tar</span><br><span class="line">sudo mv ~/Downloads/redis-3.2.0.tar /usr/local/</span><br><span class="line">sudo tar -zxf redis-3.2.0.tar</span><br><span class="line">cd redis-3.2.0</span><br><span class="line">sudo make test &quot;测试编译&quot;</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure></p>
-<h1 id="redis常用命令"><a href="#redis常用命令" class="headerlink" title="redis常用命令"></a>redis常用命令</h1><ol>
-<li>登录客户端<br>$ redis-cli</li>
-<li>判断服务是否启动<br>$ redis 127.0.0.1:6379&gt; PING</li>
-<li>远程连接<br>$ redis-cli -h host -p port -a password</li>
-<li>数据库备份 在redis安装目录创建dump.rdb文件<br>$ save</li>
-<li>数据库回复<br>将备份文件（dumo.rdb）移动至redis安装目录并启动服务</li>
-</ol>
-<h1 id="redis数据类型"><a href="#redis数据类型" class="headerlink" title="redis数据类型"></a>redis数据类型</h1><p>redis支持五种数据类型：string（字符串）、hash（哈希）、list（列表）、set（集合）、zset（有序集合）</p>
-<p>1.string<br>使用键值对进行数据存储，一个key对应一个value。String可以是任何数据，甚至是二进制的序列化对象，String类型一个键最大存储521MB。<br>通过 <em>set</em> 和 <em>get</em> 创建数据。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; set user &quot;xiaopeng&quot;</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; get user</span><br><span class="line">&quot;xiaopeng&quot;</span><br></pre></td></tr></table></figure></p>
-<p>redis存储String类型数据经常使用的命令如下：</p>
-<table>
-<thead>
-<tr>
-<th>命令</th>
-<th>功能</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>set key value</td>
-<td>指定key的值</td>
-</tr>
-<tr>
-<td>get key</td>
-<td>获取key的值</td>
-</tr>
-<tr>
-<td>getrange key start end</td>
-<td>获取返回值的子字符串</td>
-</tr>
-<tr>
-<td>getset key value</td>
-<td>将给定key的值设置为value，并返回旧值</td>
-</tr>
-<tr>
-<td>mget key1 key2</td>
-<td>返回多个key的值</td>
-</tr>
-<tr>
-<td>mset key1 value1 key2 value2</td>
-<td>同时设置多个key-value</td>
-</tr>
-<tr>
-<td>setnx key value</td>
-<td>只有当key不存在时，才设置key的值</td>
-</tr>
-<tr>
-<td>strlen key</td>
-<td>返回key所存储字符串值的长度</td>
-</tr>
-<tr>
-<td>incr key</td>
-<td>将key中存放的数字值++</td>
-</tr>
-<tr>
-<td>incrby key increment</td>
-<td>将key所存储的值加上指定的增量（increment）</td>
-</tr>
-<tr>
-<td>decr key</td>
-<td>将key中存放的数字值减一</td>
-</tr>
-<tr>
-<td>decrby key decrement</td>
-<td>将key所存储的值减去指定的减量（decrement）</td>
-</tr>
-<tr>
-<td>append key value</td>
-<td>如果key已经存在并且是字符串，则在其值后追加value</td>
-</tr>
-</tbody>
-</table>
-<p>2.hash<br>redis-hash是一个String类型的field和value的映射表，适合存储对象。语法 <em>HMSET HashExample field1 “Hello” field2 “World”</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; HMSET HashExample field1 &quot;Hello&quot; field2 &quot;World&quot;</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; HGET HashExample field1</span><br><span class="line">&quot;Hello&quot;</span><br><span class="line">127.0.0.1:6379&gt; HGET HashExample field2</span><br><span class="line">&quot;World&quot;</span><br></pre></td></tr></table></figure></p>
-<p>redis-hash操作：</p>
-<table>
-<thead>
-<tr>
-<th>命令</th>
-<th>功能</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>hmset key field1 “a”</td>
-<td>向哈希表key中放入field1-“a”</td>
-</tr>
-<tr>
-<td>hdel key field1 field2</td>
-<td>删除一个或多个哈希表字段</td>
-</tr>
-<tr>
-<td>hexists key field</td>
-<td>查看哈希表key中指定field是否存在</td>
-</tr>
-<tr>
-<td>hget key field</td>
-<td>获取指定字段的值</td>
-</tr>
-<tr>
-<td>hgetall key</td>
-<td>获取哈希表所有的字段和值</td>
-</tr>
-<tr>
-<td>hlen key</td>
-<td>获取哈希表中字段的数量</td>
-</tr>
-<tr>
-<td>hvals key</td>
-<td>获取哈希表中所有值</td>
-</tr>
-</tbody>
-</table>
-<p>3.list<br>redis-list存放简单的字符串列表，按照插入顺序排序，可以添加元素在表头或者表尾。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; lpush ListExample &quot;aaa&quot;</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; lpush ListExample &quot;bbb&quot;</span><br><span class="line">(integer) 2</span><br><span class="line">127.0.0.1:6379&gt; lpush ListExample &quot;ccc&quot;</span><br><span class="line">(integer) 3</span><br><span class="line">127.0.0.1:6379&gt; lrange ListExample 0 2</span><br><span class="line">1) &quot;ccc&quot;</span><br><span class="line">2) &quot;bbb&quot;</span><br><span class="line">3) &quot;aaa&quot;</span><br></pre></td></tr></table></figure></p>
-<table>
-<thead>
-<tr>
-<th>命令</th>
-<th>功能</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>lpush key value</td>
-<td>向列表中插入值</td>
-</tr>
-<tr>
-<td>lrange key start end</td>
-<td>输出列表部分值</td>
-</tr>
-<tr>
-<td>rpop key</td>
-<td>移除并获取列表最后一个元素(FIFO)</td>
-</tr>
-<tr>
-<td>blpop key1[key2] timeout</td>
-<td>移除并返回列表的第一个元素(FILO)</td>
-</tr>
-<tr>
-<td>lset key index value</td>
-<td>通过索引设置列表元素的值</td>
-</tr>
-<tr>
-<td>lindex key index</td>
-<td>通过索引获取列表中的元素</td>
-</tr>
-</tbody>
-</table>
-<p>4.set<br>redis-set是String类型的集合，可以进行添加，删除，查询操作。向set中添加元素，成功返回1失败返回0。<br><strong>set内元素具有唯一性，第二次插入相同的元素会被忽略（返回0）</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; sadd SetExample i</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; sadd SetExample love</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; sadd SetExample u</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; smembers SetExample</span><br><span class="line">1) &quot;i&quot;</span><br><span class="line">2) &quot;u&quot;</span><br><span class="line">3) &quot;love&quot;</span><br></pre></td></tr></table></figure></p>
-<table>
-<thead>
-<tr>
-<th>命令</th>
-<th>功能</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>sadd key member1[member2]</td>
-<td>向集合添加一个或多个成员</td>
-</tr>
-<tr>
-<td>smembers key</td>
-<td>遍历输出集合</td>
-</tr>
-<tr>
-<td>scard key</td>
-<td>获取集合成员数</td>
-</tr>
-<tr>
-<td>sdiff key1[key2]</td>
-<td>返回所有给定集合的差集</td>
-</tr>
-<tr>
-<td>sinter key1[key2]</td>
-<td>返回所有给定集合的交集</td>
-</tr>
-<tr>
-<td>sismember key member</td>
-<td>判断member元素是否是key的成员</td>
-</tr>
-<tr>
-<td>srem key member1[member2]</td>
-<td>移除集合中的一个或多个成员</td>
-</tr>
-<tr>
-<td>spop key</td>
-<td>移除并返回集合中的一个随机元素 </td>
-</tr>
-</tbody>
-</table>
-<p>5.zset<br>redis-zset和set一样也是String类型元素的集合，且不允许含有重复的成员。但是zset内部会联动一个double类型的数据（score）。通过该数据对集合中的成员进行从小到大排序。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; zadd ZsetExample 0 &quot;q&quot;</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; zadd ZsetExample 3 &quot;w&quot;</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; zadd ZsetExample 2 &quot;e&quot;</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; zadd ZsetExample 6 &quot;r&quot;</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; zadd ZsetExample 6 &quot;r&quot;</span><br><span class="line">(integer) 0         ----添加失败返回0；value成员是唯一的，不能重复但是score可以重复</span><br><span class="line">127.0.0.1:6379&gt; ZRANGEBYSCORE ZsetExample 0 1000</span><br><span class="line">1) &quot;q&quot;</span><br><span class="line">2) &quot;e&quot;</span><br><span class="line">3) &quot;w&quot;</span><br><span class="line">4) &quot;r&quot;</span><br><span class="line">127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure></p>
-<table>
-<thead>
-<tr>
-<th>命令</th>
-<th>功能</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>zadd key score1 member1[score2 member2]</td>
-<td>向有序集合中添加或更新成员</td>
-</tr>
-<tr>
-<td>zcard key</td>
-<td>获取有序集合的成员数</td>
-</tr>
-<tr>
-<td>zrangebyscore key start end</td>
-<td>按照score输出集合</td>
-</tr>
-<tr>
-<td>zrem key member1[member2]</td>
-<td>移除成员</td>
-</tr>
-<tr>
-<td>zscore key member</td>
-<td>返回集合中成员的分数值</td>
-</tr>
-</tbody>
-</table>
-<h1 id="管理redis的key"><a href="#管理redis的key" class="headerlink" title="管理redis的key"></a>管理redis的key</h1><p>可以使用以下操作管理redis数据库的key对象</p>
-<table>
-<thead>
-<tr>
-<th>操作</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>exists key</td>
-<td>判断key是否存在</td>
-</tr>
-<tr>
-<td>del key</td>
-<td>key存在则删除key</td>
-</tr>
-<tr>
-<td>dump key</td>
-<td>序列化key并返回序列化的值</td>
-</tr>
-<tr>
-<td>expire key s</td>
-<td>设置给定key的失效时间(秒)</td>
-</tr>
-<tr>
-<td>persist key</td>
-<td>移除key的失效时间，永久保存</td>
-</tr>
-<tr>
-<td>keys pattern</td>
-<td>查找所有符合给定模式的key</td>
-</tr>
-<tr>
-<td>move key db</td>
-<td>将当前数据库的key移动到给定的数据库db中</td>
-</tr>
-<tr>
-<td>randomkey</td>
-<td>从当前数据库随机返回一个key</td>
-</tr>
-<tr>
-<td>rename key key1</td>
-<td>修改key名称</td>
-</tr>
-<tr>
-<td>renamenx key key1</td>
-<td>当key1不存在时，修改key名称为key1</td>
-</tr>
-<tr>
-<td>Type key</td>
-<td>返回key所存储的值的类型</td>
-</tr>
-</tbody>
-</table>
+        <p><span id="anchor"></span></p>
+<p><hr><br><a href="#information">1. 基本信息</a><br><a href="#skills">2. 专业技能</a><br><a href="#education">3. 教育经历</a><br><a href="#experience">4. 工作经历</a><br><a href="#project">5. 项目经历</a><br><a href="#evaluation">6. 自我评价</a><br><a id="more"></a></p>
+<hr>
 
+<h1 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a><span id="information"><a href="#anchor">基本信息</a></span></h1><ul>
+<li>姓名：<strong>肖鹏</strong></li>
+<li>学历：西安电子科技大学-通信工程学院「本科」</li>
+<li>求职意向：安卓开发工程师</li>
+<li>联系电话：136-5929-1795</li>
+<li>邮箱：<a href="mailto:a_xiao_peng@163.com" target="_blank" rel="noopener">a_xiao_peng@163.com</a></li>
+<li>博客地址：<a href="https://www.xiaopeng.pro">https://www.xiaopeng.pro</a></li>
+</ul>
+<hr>
+
+<h1 id="专业技能"><a href="#专业技能" class="headerlink" title="专业技能"></a><span id="skills"><a href="#anchor">专业技能</a></span></h1><ol>
+<li>Java基础扎实，有良好的编程习惯；</li>
+<li>有良好的面向对象分析能力，熟悉常用的设计模式；</li>
+<li>精通Oracle，掌握SQL和存储过程的编写以及优化；</li>
+<li>熟悉JavaWeb技术体系，熟练运用Servlet/JSP技术；</li>
+<li>精通Spring框架的IOC、AOP；精通MyBatis框架；</li>
+<li>熟悉Linux操作系统以及常用命令；熟悉python编程；</li>
+<li>熟练使用C语言实现常用的数据结构；</li>
+<li>熟悉分布式、缓存、消息机制；熟悉redis；</li>
+<li>熟练使用Eclipse、Idea开发工具；熟悉SVN版本控制工具；</li>
+</ol>
+<hr>
+
+<h1 id="教育经历"><a href="#教育经历" class="headerlink" title="教育经历"></a><span id="education"><a href="#anchor">教育经历</a></span></h1><p><strong>2012.08.15——2016.07.10 西安电子科技大学「通信工程学院」</strong></p>
+<hr>
+
+<h1 id="工作经历"><a href="#工作经历" class="headerlink" title="工作经历"></a><span id="experience"><a href="#anchor">工作经历</a></span></h1><p><strong>2016.07.10——2018.04.18  西安神州数码融信软件有限公司 软件开发工程师</strong><br><strong>2018.05.10——2018.07.23  深圳市长亮科技软件有限公司   &nbsp;&nbsp;&nbsp;软件开发工程师</strong><br><strong>2018.08.06——2018.12.31  西安神州数码融信软件有限公司 软件开发工程师</strong></p>
+<h1 id="项目经历"><a href="#项目经历" class="headerlink" title="项目经历"></a><span id="project"><a href="#anchor">项目经历</a></span></h1><p><meta charset="utf-8"></p>
+<p><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"></p>
+<style>
+h2.top_title {
+    border-bottom: none;
+    background: none;
+    text-align: center;
+    line-height: 32px;
+    font-size: 20px
+}
+h2.top_title span {
+    font-size: 12px;
+    color: #666;
+    font-weight: 500
+}
+html * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+*, *:after, *:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+body {
+    font-size: 100%;
+    color: #7f8c97;
+    background-color: #e9f0f5;
+}
+img {
+    max-width: 100%;
+}
+.cd-container {
+    width: 90%;
+    max-width: 1170px;
+    margin: 0 auto;
+}
+.cd-container::after {
+    content: '';
+    display: table;
+    clear: both;
+}
+#cd-timeline {
+    position: relative;
+    padding: 2em 0;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+#cd-timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 18px;
+    height: 100%;
+    width: 4px;
+    background: #d7e4ed;
+}
+@media only screen and (min-width: 1170px) {
+    #cd-timeline {
+        margin-top: 3em;
+        margin-bottom: 3em;
+    }
+    #cd-timeline::before {
+        left: 50%;
+        margin-left: -2px;
+    }
+}
+.cd-timeline-block {
+    position: relative;
+    margin: 2em 0;
+}
+.cd-timeline-block:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.cd-timeline-block:first-child {
+    margin-top: 0;
+}
+.cd-timeline-block:last-child {
+    margin-bottom: 0;
+}
+@media only screen and (min-width: 1170px) {
+    .cd-timeline-block {
+        margin: 4em 0;
+    }
+    .cd-timeline-block:first-child {
+        margin-top: 0;
+    }
+    .cd-timeline-block:last-child {
+        margin-bottom: 0;
+    }
+}
+.cd-timeline-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px white, inset 0 2px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
+}
+.cd-timeline-img img {
+    display: block;
+    width: 24px;
+    height: 24px;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    margin-left: -12px;
+    margin-top: -12px;
+}
+.cd-timeline-img.cd-picture {
+    background: #75ce66;
+}
+.cd-timeline-img.cd-movie {
+    background: #c03b44;
+}
+.cd-timeline-img.cd-location {
+    background: #f0ca45;
+}
+@media only screen and (min-width: 1170px) {
+    .cd-timeline-img {
+        width: 60px;
+        height: 60px;
+        left: 50%;
+        margin-left: -30px;
+        -webkit-transform: translateZ(0);
+        -webkit-backface-visibility: hidden;
+    }
+    .cssanimations .cd-timeline-img.is-hidden {
+        visibility: hidden;
+    }
+    .cssanimations .cd-timeline-img.bounce-in {
+        visibility: visible;
+        -webkit-animation: cd-bounce-1 0.6s;
+        -moz-animation: cd-bounce-1 0.6s;
+        animation: cd-bounce-1 0.6s;
+    }
+}
+.cd-timeline-content {
+    position: relative;
+    margin-left: 60px;
+    background: white;
+    border-radius: 0.25em;
+    padding: 1em;
+    box-shadow: 0 3px 0 #d7e4ed;
+}
+.cd-timeline-content:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.cd-timeline-content h2 {
+    color: #303e49;
+}
+.cd-timeline-content p, .cd-timeline-content .cd-read-more, .cd-timeline-content .cd-date {
+    font-size: 13px;
+    font-size: 0.8125rem;
+}
+.cd-timeline-content .cd-read-more, .cd-timeline-content .cd-date {
+    display: inline-block;
+}
+.cd-timeline-content p {
+    margin: 1em 0;
+    line-height: 1.6;
+}
+.cd-timeline-content .cd-read-more {
+    float: right;
+    padding: .8em 1em;
+    background: #acb7c0;
+    color: white;
+    border-radius: 0.25em;
+}
+.no-touch .cd-timeline-content .cd-read-more:hover {
+    background-color: #bac4cb;
+}
+a.cd-read-more:hover {
+    text-decoration: none;
+    background-color: #424242;
+}
+.cd-timeline-content .cd-date {
+    float: left;
+    padding: .8em 0;
+    opacity: .7;
+}
+.cd-timeline-content::before {
+    content: '';
+    position: absolute;
+    top: 16px;
+    right: 100%;
+    height: 0;
+    width: 0;
+    border: 7px solid transparent;
+    border-right: 7px solid white;
+}
+@media only screen and (min-width: 768px) {
+    .cd-timeline-content h2 {
+        font-size: 20px;
+        font-size: 1.25rem;
+    }
+    .cd-timeline-content p {
+        font-size: 16px;
+        font-size: 1rem;
+    }
+    .cd-timeline-content .cd-read-more, .cd-timeline-content .cd-date {
+        font-size: 14px;
+        font-size: 0.875rem;
+    }
+}
+@media only screen and (min-width: 1170px) {
+    .cd-timeline-content {
+        margin-left: 0;
+        padding: 1.6em;
+        width: 45%;
+    }
+    .cd-timeline-content::before {
+        top: 24px;
+        left: 100%;
+        border-color: transparent;
+        border-left-color: white;
+    }
+    .cd-timeline-content .cd-read-more {
+        float: left;
+    }
+    .cd-timeline-content .cd-date {
+        position: absolute;
+        width: 100%;
+        left: 122%;
+        top: 6px;
+        font-size: 16px;
+        font-size: 1rem;
+    }
+    .cd-timeline-block:nth-child(even) .cd-timeline-content {
+        float: right;
+    }
+    .cd-timeline-block:nth-child(even) .cd-timeline-content::before {
+        top: 24px;
+        left: auto;
+        right: 100%;
+        border-color: transparent;
+        border-right-color: white;
+    }
+    .cd-timeline-block:nth-child(even) .cd-timeline-content .cd-read-more {
+        float: right;
+    }
+    .cd-timeline-block:nth-child(even) .cd-timeline-content .cd-date {
+        left: auto;
+        right: 122%;
+        text-align: right;
+    }
+    .cssanimations .cd-timeline-content.is-hidden {
+        visibility: hidden;
+    }
+    .cssanimations .cd-timeline-content.bounce-in {
+        visibility: visible;
+        -webkit-animation: cd-bounce-2 0.6s;
+        -moz-animation: cd-bounce-2 0.6s;
+        animation: cd-bounce-2 0.6s;
+    }
+}
+@media only screen and (min-width: 1170px) {
+    .cssanimations .cd-timeline-block:nth-child(even) .cd-timeline-content.bounce-in {
+        -webkit-animation: cd-bounce-2-inverse 0.6s;
+        -moz-animation: cd-bounce-2-inverse 0.6s;
+        animation: cd-bounce-2-inverse 0.6s;
+    }
+}
+</style>
+
+<section id="cd-timeline" class="cd-container"><br>    <div class=""><br>        <div class="cd-timeline-img cd-picture"><br>            <!--<img src="" alt="Picture">--><br>        </div><br>        <div class="cd-timeline-content"><br>            <h2>上海华瑞银行/重庆富民银行核心系统优化项目</h2><br>            <li>主要任务：系统优化，使之满足高并发，快响应的特点</li><br>            <li>完成功能：常用接口性能测试、Oracle数据库sql优化、日终批处理流程梳理、按照新的业务对日终批处理进行改造</li><br>            <li>成果：银行日终处理时长明显缩短，贷款回收数50w笔时跑批时长缩短60%。</li><br>            <span class="cd-date">2018-08-08至2018-12-01</span><br>        </div><br>    </div><br>    <div class="cd-timeline-block"><br>        <div class="cd-timeline-img cd-movie"><br>            <!--<img src="" alt="Movie">--><br>        </div><br>        <div class="cd-timeline-content"><br>            <h2>平安银行香港分行收费改造项目</h2><br>            <p>项目一明细项目一明细项目一明细项目一明细项目一明细项目一明细</p><br>            <span class="cd-date">2018-05-10至2018-07-20</span><br>        </div><br>    </div><br>    <div class=""><br>        <div class="cd-timeline-img cd-picture"><br>            <!--<img src="" alt="Picture">--><br>        </div><br>        <div class="cd-timeline-content"><br>            <h2>温州民商银行电票系统建设项目</h2><br>            <li>项目一明细项目一明细项目一明细项目一明细项目一明细项目一明细</li><br>            <span class="cd-date">2017-04-10至2017-12-20</span><br>        </div><br>    </div><br>    <div class="cd-timeline-block"><br>        <div class="cd-timeline-img cd-movie"><br>            <!--<img src="" alt="Movie">--><br>        </div><br>        <div class="cd-timeline-content"><br>            <h2>温州民商银行核心一期项目</h2><br>            <p>项目一明细项目一明细项目一明细项目一明细项目一明细项目一明细</p><br>            <span class="cd-date">2016-08-01至2017-01-21</span><br>        </div><br>    </div><br></section>
+
+
+<h1 id="自我评价"><a href="#自我评价" class="headerlink" title="自我评价"></a><span id="evaluation"><a href="#anchor">自我评价</a></span></h1>
       
 
       <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 start -->
@@ -484,7 +501,7 @@
     
     <br>
     <strong>本文链接：</strong>
-    http://www.xiaopeng.pro/articles/6d22a564.html
+    http://www.xiaopeng.pro/articles/963f9cce.html
     <br>
     <strong>版权声明：</strong>
     本原创文章采用
@@ -532,17 +549,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -600,18 +606,18 @@
   
 <nav id="article-nav">
   
-    <a href="/articles/8e85a10.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/articles/8bbddc5b.html" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          redis-pub/sub
+          「Java程序设计」-网络
         
       </div>
     </a>
   
   
-    <a href="/articles/fe816c3c.html" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">建造者模式</div>
+    <a href="/articles/135744cf.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">「四月は君の嘘」-观后感</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -638,7 +644,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#redis的安装"><span class="toc-number">1.</span> <span class="toc-text">redis的安装</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#redis常用命令"><span class="toc-number">2.</span> <span class="toc-text">redis常用命令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#redis数据类型"><span class="toc-number">3.</span> <span class="toc-text">redis数据类型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#管理redis的key"><span class="toc-number">4.</span> <span class="toc-text">管理redis的key</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#基本信息"><span class="toc-number">1.</span> <span class="toc-text">基本信息</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#专业技能"><span class="toc-number">2.</span> <span class="toc-text">专业技能</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#教育经历"><span class="toc-number">3.</span> <span class="toc-text">教育经历</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#工作经历"><span class="toc-number">4.</span> <span class="toc-text">工作经历</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#项目经历"><span class="toc-number">5.</span> <span class="toc-text">项目经历</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">5.1.</span> <span class="toc-text">上海华瑞银行/重庆富民银行核心系统优化项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">5.2.</span> <span class="toc-text">平安银行香港分行收费改造项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">5.3.</span> <span class="toc-text">温州民商银行电票系统建设项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">5.4.</span> <span class="toc-text">温州民商银行核心一期项目</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#自我评价"><span class="toc-number">6.</span> <span class="toc-text">自我评价</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -649,12 +655,38 @@
 
 
 
+  
+
+  
+
+  
+
+  
+
+  
+
 
 <!-- laibili评论系统 -->
 
   
   
-    <div class="lv-container"></div>
+  <div id="lv-container" data-id="city" data-uid="MTAyMC80MDQ0NS8xNjk3Mg==">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+
   
   
 
