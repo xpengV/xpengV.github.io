@@ -162,6 +162,427 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-「Java程序设计」-多线程-生产者消费者问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/articles/5f7bde3b.html">「Java程序设计」-多线程|生产者消费者问题</a>
+    </h1>
+  
+
+        
+        <a href="/articles/5f7bde3b.html" class="archive-article-date">
+  	<time datetime="2019-01-16T08:24:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;生产者-消费者问题，实际上主要包含了两类线程，一种是生产者线程用于生产数据，另一种是消费者线程用于消费数据，为了解耦生产者和消费者的关系，通常会采用共享的数据区域存储产品。这个共享数据区域应该具备这样的线程间并发协作功能：</p>
+<ol>
+<li>如果共享数据区已满，阻塞生产者继续生产数据放置入内；</li>
+<li>如果共享数据区为空，阻塞消费者继续消费数据</li>
+</ol>
+<p>为了实现生产者-消费者问题，可以采用三种方式：<br><a href="#title_1">1. 使用Object的wait/notify的消息通知机制</a><br><a href="#title_2">2. 使用Lock的Condition的await/signal的消息通知机制</a><br><a href="#title_3">3. 使用BlockingQueue实现</a></p>
+        
+          <a class="article-more-a" href="/articles/5f7bde3b.html#more">more >></a>
+        
+      
+
+      <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 start -->
+      
+
+  <div class="declare" hidden="hidden"></div>
+
+
+      <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 end -->
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">JavaSE</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">读书笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/articles/5f7bde3b.html">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+<!-- laibili评论系统 -->
+
+
+
+
+
+
+  
+    <article id="post-「Java程序设计」-多线程-线程池" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/articles/561de1a6.html">「Java程序设计」-多线程|线程池</a>
+    </h1>
+  
+
+        
+        <a href="/articles/561de1a6.html" class="archive-article-date">
+  	<time datetime="2019-01-15T09:06:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果并发的请求数量非常多，但每个线程执行的时间很短，这样就会频繁的创建和销毁线程，如此一来会大大降低系统的效率。可能出现服务器在为每个请求创建新线程和销毁线程上花费的时间和消耗的系统资源要比处理实际的用户请求的时间和资源更多。所以应该使用线程池处理类似问题。<br><strong>使用线程池的场景：</strong></p>
+<ol>
+<li>单个任务处理时间比较短</li>
+<li>需要处理任务的数量很大</li>
+</ol>
+<p><strong>使用线程池的好处：</strong></p>
+<ol>
+<li>降低资源消耗：通过复用已存在的线程和降低线程关闭的次数来尽可能降低系统性能损耗</li>
+<li>提升系统响应速度：通过复用线程，省去创建线程的过程，因此整体上提升了系统的响应速度</li>
+<li>提高线程的可管理性：线程是稀缺资源，如果无限制的创建，不仅会消耗系统资源，还会降低系统的稳定性</li>
+</ol>
+        
+          <a class="article-more-a" href="/articles/561de1a6.html#more">more >></a>
+        
+      
+
+      <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 start -->
+      
+
+  <div class="declare" hidden="hidden"></div>
+
+
+      <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 end -->
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">JavaSE</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">读书笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/articles/561de1a6.html">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+<!-- laibili评论系统 -->
+
+
+
+
+
+
+  
+    <article id="post-「Java程序设计」-多线程-ThreadLocal" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/articles/4212c933.html">「Java程序设计」-多线程|ThreadLocal</a>
+    </h1>
+  
+
+        
+        <a href="/articles/4212c933.html" class="archive-article-date">
+  	<time datetime="2019-01-15T08:53:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一、ThreadLocal简介"><a href="#一、ThreadLocal简介" class="headerlink" title="一、ThreadLocal简介"></a>一、ThreadLocal简介</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在多线程编程中通常解决线程安全问题的方式是使用synchronized对共享资源进行同步，但是这种加锁的方式会使未获得锁对象的线程进行阻塞等待。显然这种方式的时间效低。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;线程安全问题的核心在于多个线程会对同一共享资源进行操作，那么，如果每个线程都使用自己的“共享资源”，彼此之间达到隔离的状态，就不会出现线程安全的问题。实际上，这是一种<span style="color:red">空间换时间</span>的方案。每个线程都会都拥有自己的“共享资源”无疑内存消耗会很大，但是由于不需要同步也就减少了线程可能存在的阻塞等待的情况从而提高的时间效率。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;虽然ThreadLocal并不在java.util.concurrent包中(java.lang)，但是它更像一种并发容器。<strong>从ThreadLocal这个类名可以顾名思义，表示线程的“本地变量”，即每个线程都拥有该变量的副本，各用各的避免共享资源的竞争。</strong></p>
+        
+          <a class="article-more-a" href="/articles/4212c933.html#more">more >></a>
+        
+      
+
+      <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 start -->
+      
+
+  <div class="declare" hidden="hidden"></div>
+
+
+      <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 end -->
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">JavaSE</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">读书笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/articles/4212c933.html">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+<!-- laibili评论系统 -->
+
+
+
+
+
+
+  
+    <article id="post-「Java程序设计」-多线程-进阶" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/articles/794f61a9.html">「Java程序设计」-多线程|进阶</a>
+    </h1>
+  
+
+        
+        <a href="/articles/794f61a9.html" class="archive-article-date">
+  	<time datetime="2019-01-15T08:43:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、Java内存模型"><a href="#一、Java内存模型" class="headerlink" title="一、Java内存模型"></a>一、Java内存模型</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;线程间协作通信可以类比人与人之间的协作的方式，之前网上有个流行语“你妈喊你回家吃饭了”，就以这个生活场景为例，小明在外面玩耍，小明妈妈在家里做饭，做晚饭后准备叫小明回家吃饭，那么就存在两种方式：</p>
+<ol>
+<li>小明妈妈要去上班了十分紧急这个时候手机又没有电了，于是就在桌子上贴了一张纸条“饭做好了，放在…”小明回家后看到纸条如愿吃到妈妈做的饭菜，那么，如果将小明妈妈和小明作为两个线程，那么这张纸条就是这两个线程间通信的共享变量，通过读写共享变量实现两个线程间协作；</li>
+<li>妈妈的手机还有电，妈妈在赶去坐公交的路上给小明打了个电话，这种方式就是通知机制来完成协作。同样，可以引申到线程间通信机制。</li>
+</ol>
+        
+          <a class="article-more-a" href="/articles/794f61a9.html#more">more >></a>
+        
+      
+
+      <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 start -->
+      
+
+  <div class="declare" hidden="hidden"></div>
+
+
+      <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 end -->
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">JavaSE</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">读书笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/articles/794f61a9.html">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+<!-- laibili评论系统 -->
+
+
+
+
+
+
+  
     <article id="post-贷款还款计划试算" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -302,11 +723,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">读书笔记</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">JavaSE</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">JavaSE</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">读书笔记</a>
         		</li>
       		
 		</ul>
@@ -572,11 +993,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">JavaSE</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">读书笔记</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">JavaSE</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
         		</li>
       		
 		</ul>
@@ -676,11 +1101,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">读书笔记</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">JavaSE</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">JavaSE</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">读书笔记</a>
         		</li>
       		
 		</ul>
@@ -728,407 +1153,9 @@
 
 
   
-    <article id="post-「Java程序设计」-集合框架" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/articles/e720f1c8.html">「Java程序设计」-集合框架</a>
-    </h1>
-  
-
-        
-        <a href="/articles/e720f1c8.html" class="archive-article-date">
-  	<time datetime="2018-11-09T13:16:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、本章要点"><a href="#一、本章要点" class="headerlink" title="一、本章要点"></a>一、本章要点</h2><ol>
-<li>了解Java集合框架的层次架构</li>
-<li>Collection接口</li>
-<li>熟悉Set接口，了解何时及如何使用HashSet、LinkedHashSet来存储元素</li>
-<li>熟悉List接口，了解何时及如何使用ArrayList或LinkedList来存储元素</li>
-<li>熟悉Map接口，了解何时及如何使用HashMap、LinkedHashMap与HashTable来存储带键值的值</li>
-<li>其他常用API</li>
-</ol>
-        
-          <a class="article-more-a" href="/articles/e720f1c8.html#more">more >></a>
-        
-      
-
-      <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 start -->
-      
-
-  <div class="declare" hidden="hidden"></div>
-
-
-      <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 end -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">读书笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">JavaSE</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/articles/e720f1c8.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-<!-- laibili评论系统 -->
-
-
-
-
-
-
-  
-    <article id="post-「Java程序设计」-继承与多态" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/articles/c59ea41a.html">「Java程序设计」-继承与多态</a>
-    </h1>
-  
-
-        
-        <a href="/articles/c59ea41a.html" class="archive-article-date">
-  	<time datetime="2018-11-04T12:48:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、本章要点"><a href="#一、本章要点" class="headerlink" title="一、本章要点"></a>一、本章要点</h2><ol>
-<li>使用关键字super调用父类的构造方法和方法</li>
-<li>重写和重载</li>
-<li>instanceof</li>
-<li>熟悉Object类中几个有用的方法(equals(object)、hashCode()、toString()、finalize()、clone()和getClass())</li>
-<li>理解隐藏数据域和初始化块</li>
-<li>类之间关系(关联、聚集、依赖、继承)</li>
-</ol>
-        
-          <a class="article-more-a" href="/articles/c59ea41a.html#more">more >></a>
-        
-      
-
-      <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 start -->
-      
-
-  <div class="declare" hidden="hidden"></div>
-
-
-      <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 end -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">读书笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">JavaSE</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/articles/c59ea41a.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-<!-- laibili评论系统 -->
-
-
-
-
-
-
-  
-    <article id="post-「Java程序设计」-字符串和文本IO" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/articles/bee59fea.html">「Java程序设计」-字符串和文本IO</a>
-    </h1>
-  
-
-        
-        <a href="/articles/bee59fea.html" class="archive-article-date">
-  	<time datetime="2018-11-02T12:39:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、本章要点"><a href="#一、本章要点" class="headerlink" title="一、本章要点"></a>一、本章要点</h2><ol>
-<li>字符串类String</li>
-<li>String/StringBuilder/StringBuffer</li>
-<li>文本I/O(PrintWrite/Scanner)</li>
-</ol>
-        
-          <a class="article-more-a" href="/articles/bee59fea.html#more">more >></a>
-        
-      
-
-      <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 start -->
-      
-
-  <div class="declare" hidden="hidden"></div>
-
-
-      <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 end -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">读书笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">JavaSE</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/articles/bee59fea.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-<!-- laibili评论系统 -->
-
-
-
-
-
-
-  
-    <article id="post-山水之间" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/articles/e157340a.html">山水之间</a>
-    </h1>
-  
-
-        
-        <a href="/articles/e157340a.html" class="archive-article-date">
-  	<time datetime="2018-11-02T03:41:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <center><strong>山水之间</strong></center><br><center>作曲：许嵩  作词：许嵩</center><br>
-        
-          <a class="article-more-a" href="/articles/e157340a.html#more">more >></a>
-        
-      
-
-      <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 start -->
-      
-
-  <div class="declare" hidden="hidden"></div>
-
-
-      <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 end -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/articles/e157340a.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-<!-- laibili评论系统 -->
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -1248,23 +1275,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">JavaSE</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">sql优化</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">JDBC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Springmvc</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">WebService</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1280,7 +1299,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">JavaSE</a>
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1288,19 +1307,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">线性表</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">链表</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
             
             <div class="clearfix"></div>
