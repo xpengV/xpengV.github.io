@@ -162,6 +162,108 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-「Java程序设计」-多线程-ThreadLocal" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/articles/4212c933.html">「Java程序设计」-多线程|ThreadLocal</a>
+    </h1>
+  
+
+        
+        <a href="/articles/4212c933.html" class="archive-article-date">
+  	<time datetime="2018-12-23T08:53:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一、ThreadLocal简介"><a href="#一、ThreadLocal简介" class="headerlink" title="一、ThreadLocal简介"></a>一、ThreadLocal简介</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在多线程编程中通常解决线程安全问题的方式是使用synchronized对共享资源进行同步，但是这种加锁的方式会使未获得锁对象的线程进行阻塞等待。显然这种方式的时间效低。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;线程安全问题的核心在于多个线程会对同一共享资源进行操作，那么，如果每个线程都使用自己的“共享资源”，彼此之间达到隔离的状态，就不会出现线程安全的问题。实际上，这是一种<span style="color:red">空间换时间</span>的方案。每个线程都会都拥有自己的“共享资源”无疑内存消耗会很大，但是由于不需要同步也就减少了线程可能存在的阻塞等待的情况从而提高的时间效率。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;虽然ThreadLocal并不在java.util.concurrent包中(java.lang)，但是它更像一种并发容器。<strong>从ThreadLocal这个类名可以顾名思义，表示线程的“本地变量”，即每个线程都拥有该变量的副本，各用各的避免共享资源的竞争。</strong></p>
+        
+          <a class="article-more-a" href="/articles/4212c933.html#more">more >></a>
+        
+      
+
+      <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 start -->
+      
+
+  <div class="declare" hidden="hidden"></div>
+
+
+      <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 end -->
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">JavaSE</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">读书笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/articles/4212c933.html">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+<!-- laibili评论系统 -->
+
+
+
+
+
+
+  
     <article id="post-「Java程序设计」-多线程-生产者消费者问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -175,7 +277,7 @@
 
         
         <a href="/articles/5f7bde3b.html" class="archive-article-date">
-  	<time datetime="2019-01-16T08:24:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-16</time>
+  	<time datetime="2018-12-23T08:24:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-23</time>
 </a>
         
       </header>
@@ -280,7 +382,7 @@
 
         
         <a href="/articles/561de1a6.html" class="archive-article-date">
-  	<time datetime="2019-01-15T09:06:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-15</time>
+  	<time datetime="2018-12-22T09:06:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-22</time>
 </a>
         
       </header>
@@ -377,108 +479,6 @@
 
 
   
-    <article id="post-「Java程序设计」-多线程-ThreadLocal" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/articles/4212c933.html">「Java程序设计」-多线程|ThreadLocal</a>
-    </h1>
-  
-
-        
-        <a href="/articles/4212c933.html" class="archive-article-date">
-  	<time datetime="2019-01-15T08:53:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="一、ThreadLocal简介"><a href="#一、ThreadLocal简介" class="headerlink" title="一、ThreadLocal简介"></a>一、ThreadLocal简介</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在多线程编程中通常解决线程安全问题的方式是使用synchronized对共享资源进行同步，但是这种加锁的方式会使未获得锁对象的线程进行阻塞等待。显然这种方式的时间效低。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;线程安全问题的核心在于多个线程会对同一共享资源进行操作，那么，如果每个线程都使用自己的“共享资源”，彼此之间达到隔离的状态，就不会出现线程安全的问题。实际上，这是一种<span style="color:red">空间换时间</span>的方案。每个线程都会都拥有自己的“共享资源”无疑内存消耗会很大，但是由于不需要同步也就减少了线程可能存在的阻塞等待的情况从而提高的时间效率。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;虽然ThreadLocal并不在java.util.concurrent包中(java.lang)，但是它更像一种并发容器。<strong>从ThreadLocal这个类名可以顾名思义，表示线程的“本地变量”，即每个线程都拥有该变量的副本，各用各的避免共享资源的竞争。</strong></p>
-        
-          <a class="article-more-a" href="/articles/4212c933.html#more">more >></a>
-        
-      
-
-      <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 start -->
-      
-
-  <div class="declare" hidden="hidden"></div>
-
-
-      <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 end -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">JavaSE</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">读书笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/articles/4212c933.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-<!-- laibili评论系统 -->
-
-
-
-
-
-
-  
     <article id="post-「Java程序设计」-多线程-进阶" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -492,7 +492,7 @@
 
         
         <a href="/articles/794f61a9.html" class="archive-article-date">
-  	<time datetime="2019-01-15T08:43:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-15</time>
+  	<time datetime="2018-12-22T08:43:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-22</time>
 </a>
         
       </header>
