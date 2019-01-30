@@ -162,525 +162,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-工厂模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/articles/54788f73.html">工厂模式</a>
-    </h1>
-  
-
-        
-        <a href="/articles/54788f73.html" class="archive-article-date">
-  	<time datetime="2017-07-02T13:26:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在java语言中，实例化对象的方式大多使用new关键字，但是在某些情况下使用new关键字来实例化对象并不是最好的选择。<br>比如：某个类型的创建需要一系列初始值的计算工作，或者需要首先创建其他的辅助对象。那么类型的创建就不是单一的操作，而是一系列操作！客户端并不关心对象其内部的复杂运作，只是需要一个简单入口可以获得自己想要的实例。</p>
-<h2 id="1、工厂模式"><a href="#1、工厂模式" class="headerlink" title="1、工厂模式"></a>1、工厂模式</h2><p>为创建对象提供过渡接口，以便将创建对象的内部调用屏蔽起来，达到提高灵活性的目的。工厂模式可以分为三类：</p>
-<ol>
-<li>简单工厂模式[simple factory]</li>
-<li>工厂方法模式[factory method]</li>
-<li>抽象工厂模式[abstract factory]</li>
-</ol>
-<h3 id="1-1、三种方式的区别"><a href="#1-1、三种方式的区别" class="headerlink" title="1.1、三种方式的区别"></a>1.1、三种方式的区别</h3><ul>
-<li>simple factory / factory method</li>
-</ul>
-<p>一个抽象产品类—&gt;多个具体产品类<br>一个抽象工厂类—&gt;多个具体工厂类<br><strong>每个具体工厂只能创建一个具体的产品（一对一关系）</strong></p>
-<ul>
-<li>abstract factory</li>
-</ul>
-<p>多个抽象产品类—&gt;每种抽象产品对应多个具体产品<br>一个抽象工厂类—&gt;多个具体工厂类<br><strong>每个具体工厂可以创建多个具体的产品（一对多关系）</strong></p>
-<h2 id="2、简单工厂"><a href="#2、简单工厂" class="headerlink" title="2、简单工厂"></a>2、简单工厂</h2><p><img src="/img/设计模式/工厂模式/简单工厂模式.png" alt="简单工厂"></p>
-<p>生产thinkpad的内部过程必然是复杂的，但是经过工厂模式后都被屏蔽了起来。<strong>工厂是核心，应该包含一定的业务判断和逻辑用来选择进行创建的产品。</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Computer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Computer</span><span class="params">()</span></span>&#123;&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThinkPad_E450</span> <span class="keyword">extends</span> <span class="title">Computer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ThinkPad_E450</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"生产ThinkPad_E450"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThinkPad_E460</span> <span class="keyword">extends</span> <span class="title">Computer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ThinkPad_E460</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"生产ThinkPad_E460"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SimpleFactory</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Computer <span class="title">createComputer</span><span class="params">(<span class="keyword">int</span> type)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">switch</span> (type) &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">450</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> ThinkPad_E450();</span><br><span class="line">            <span class="keyword">case</span> <span class="number">460</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> ThinkPad_E460();</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">App</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        SimpleFactory factory = <span class="keyword">new</span> SimpleFactory();</span><br><span class="line">        factory.createComputer(<span class="number">450</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>分析代码：对于产品而言，如果需要新增产品那么创建Computer的子类即可，但是对于工厂则要修改业务逻辑来适配新产品的创建，这显然违背好的设计原则。在实际的生产中产品的形态可能是一种树状结构，就更加复杂了。<br><strong>我们将工厂类也定义成接口，每增加一种产品类型就增加一个工厂的实现来适配对应的产品创建</strong>，这样工厂的设计就可以扩展而不是去修改原来的代码！</p>
-<h2 id="3、工厂方法模式"><a href="#3、工厂方法模式" class="headerlink" title="3、工厂方法模式"></a>3、工厂方法模式</h2><p>针对每种产品适配一个工厂，UML如下。代码见<a href="https://github.com/xpengV/DesignPattern" target="_blank" rel="noopener">My Github - 设计模式</a><br><img src="/img/设计模式/工厂模式/工厂方法模式.png" alt="工厂方法模式"><br>工厂方法模式仿佛已经很完美的对对象的创建进行了包装，使得客户程序中仅仅处理抽象产品角色提供的接口，但使得对象的数量成倍增长。<br>当产品种类非常多时，会出现大量的与之对应的工厂对象。</p>
-<h2 id="4、抽象工厂模式"><a href="#4、抽象工厂模式" class="headerlink" title="4、抽象工厂模式"></a>4、抽象工厂模式</h2><p>抽象工厂是工厂方法模式的升级版，它用来创建一组相互依赖的对象。比如每个抽象产品角色都包含两个具体产品，并且它们之间是相互依赖的。在调用工厂暴露的方法创建产品时，会同时创建相互依赖的对象来构建一个完整的产品。而不是单个创建然后组装。<a href="https://blog.csdn.net/jason0539/article/details/44976775" target="_blank" rel="noopener">详见：抽象工厂模式</a></p>
-
-      
-
-      <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 start -->
-      
-
-  <div class="declare" hidden="hidden"></div>
-
-
-      <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 end -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/articles/54788f73.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-<!-- laibili评论系统 -->
-
-
-
-
-
-
-  
-    <article id="post-单例模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/articles/f1601c3e.html">单例模式</a>
-    </h1>
-  
-
-        
-        <a href="/articles/f1601c3e.html" class="archive-article-date">
-  	<time datetime="2017-06-03T01:21:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>单例模式：保证一个类仅有一个实例，并提供一个访问它的全局访问点。<br>Singleton类，定义一个getInstance静态方法，允许客户访问它的唯一实例。</p>
-<h2 id="1、懒汉式单例模式"><a href="#1、懒汉式单例模式" class="headerlink" title="1、懒汉式单例模式"></a>1、懒汉式单例模式</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(instance == <span class="keyword">null</span>)&#123;</span><br><span class="line">            instance = <span class="keyword">new</span> Singleton();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>构造方法私有，防止外界利用构造方法进行实例化（但实际通过发射亦可以在外部调用私有构造方法，这里不讨论）</li>
-<li>getInstance是外界唯一能够访问的入口</li>
-<li>若实例存在，那么直接返回。全局只有一个对象</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Singleton s1 = Singleton.getInstance();</span><br><span class="line">Singleton s2 = Singleton.getInstance();</span><br><span class="line"></span><br><span class="line">System.out.println(s1 == s2);  <span class="comment">//true：表示两次实例化结果一样，是单例的</span></span><br></pre></td></tr></table></figure>
-<h2 id="2、线程安全的懒汉式"><a href="#2、线程安全的懒汉式" class="headerlink" title="2、线程安全的懒汉式"></a>2、线程安全的懒汉式</h2><p>但是懒汉式的单例模式并不是线程安全的，在多线程并发的情况下可能会出现多个实例。要实现线程安全，要对getInsance方法进行改造使懒汉式变得线程安全。</p>
-<ul>
-<li>对getInstance方法使用同步方法或者同步代码块<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> Singleton <span class="title">getInstance_1</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(instance == <span class="keyword">null</span>)&#123;</span><br><span class="line">            instance = <span class="keyword">new</span> Singleton();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>虽然多线程下是安全的，但是方法的整个事务判断全部被同步，这种写法效率不高！</p>
-<ul>
-<li>双重检查锁定<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance_2</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(instance == <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (instance)&#123;</span><br><span class="line">                <span class="keyword">if</span>(instance == <span class="keyword">null</span>)&#123;</span><br><span class="line">                    instance = <span class="keyword">new</span> Singleton();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><strong>双重检查模式先判断实例是否存在，不存在再进行加锁处理。相比上一种写法提高了效率。</strong></p>
-<ul>
-<li>静态内部类<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">LazyHolder</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton INSTANCE = <span class="keyword">new</span> Singleton();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton <span class="title">getInstance_3</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> LazyHolder.INSTANCE;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>相比上两种写法，效率要高！</p>
-<h2 id="3、饿汉式单例"><a href="#3、饿汉式单例" class="headerlink" title="3、饿汉式单例"></a>3、饿汉式单例</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonA</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingletonA</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> SingletonA instance = <span class="keyword">new</span> SingletonA();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingletonA <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>饿汉式单例在类创建的同时就创建了一个静态的实例变量，所以天生是线程安全的！</p>
-<h2 id="4、懒汉式和饿汉式的比较"><a href="#4、懒汉式和饿汉式的比较" class="headerlink" title="4、懒汉式和饿汉式的比较"></a>4、懒汉式和饿汉式的比较</h2><ol>
-<li>饿汉式天生线程安全，懒汉式需要进行上文的三种处理</li>
-<li>性能加载和资源：饿汉式在创建类时就会开辟内存空间实例化一个静态的变量，不管你是否使用它都在那里；懒汉式是一种延时加载的方式，<br>在第一次调用getInstance方法时实例化对象。</li>
-</ol>
-
-      
-
-      <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 start -->
-      
-
-  <div class="declare" hidden="hidden"></div>
-
-
-      <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 end -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/articles/f1601c3e.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-<!-- laibili评论系统 -->
-
-
-
-
-
-
-  
-    <article id="post-策略模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/articles/72e3b671.html">策略模式</a>
-    </h1>
-  
-
-        
-        <a href="/articles/72e3b671.html" class="archive-article-date">
-  	<time datetime="2017-05-23T13:41:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在软件开发的过程中，实现某一个功能通常有多种算法或者策略，我们可以根据环境条件的不同来选取不同的算法或者策略来完成。</p>
-<ol>
-<li>提供多个方法供客户端调用</li>
-<li>将多种策略包装在一个方法中，通过if…else…来进行条件判断这两种方法我们都将至称为硬编码（Hard Coding）。第一种方法若修改了算法，那么客户端也要进行相应的修改；第二种将导致程序庞大不易维护。</li>
-</ol>
-<h1 id="1、解决方法"><a href="#1、解决方法" class="headerlink" title="1、解决方法"></a>1、解决方法</h1><p>将一个类经常改变或者可能改变的部分提取出来，作为接口，然后在类中维护一个接口的引用。这样就可以在具体的某个类中不同地实现接口的功能,从而实现不同的策略。</p>
-        
-          <a class="article-more-a" href="/articles/72e3b671.html#more">more >></a>
-        
-      
-
-      <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 start -->
-      
-
-  <div class="declare" hidden="hidden"></div>
-
-
-      <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 end -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/articles/72e3b671.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-<!-- laibili评论系统 -->
-
-
-
-
-
-
-  
-    <article id="post-Spring-AOP" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/articles/97375e6e.html">Spring-AOP</a>
-    </h1>
-  
-
-        
-        <a href="/articles/97375e6e.html" class="archive-article-date">
-  	<time datetime="2017-05-13T05:15:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="AOP概念"><a href="#AOP概念" class="headerlink" title="AOP概念"></a>AOP概念</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;面向切面编程可以说是面向对象编程的补充和完善。OOP引入封装、继承、多态的概念来建立一种层次结构，但是OOP并不适合定义横向的关系。例如日志功能，日志往往是横向地散布在所有对象中，且与对象的核心功能毫无关系。这种散布在各处的无关代码被称为横切，在OOP设计中，它导致了大量代码的重复，复用性低。<br>
-        
-          <a class="article-more-a" href="/articles/97375e6e.html#more">more >></a>
-        
-      
-
-      <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 start -->
-      
-
-  <div class="declare" hidden="hidden"></div>
-
-
-      <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 end -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/articles/97375e6e.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-<!-- laibili评论系统 -->
-
-
-
-
-
-
-  
-    <article id="post-Spring-JDBC支持" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/articles/234ab8ad.html">Spring-JDBC支持</a>
-    </h1>
-  
-
-        
-        <a href="/articles/234ab8ad.html" class="archive-article-date">
-  	<time datetime="2017-05-05T12:44:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Spring对jdbc技术提供了很好的支持：<br>体现在：</p>
-<ul>
-<li>Spring对c3p0连接池的支持</li>
-<li>Spring对jdbc操作提供了JdbcTemplate，来简化jdbc操作</li>
-</ul>
-<h2 id="引入jar包"><a href="#引入jar包" class="headerlink" title="引入jar包"></a>引入jar包</h2><ol>
-<li>spring-jdbc-3.2.5.RELEASE.jar</li>
-<li>spring-tx-3.2.5.RELEASE.jar</li>
-<li>c3p0-0.9.1.2.jar</li>
-<li>mysql-connector-java-5.1.12-bin.jar</li>
-</ol>
-        
-          <a class="article-more-a" href="/articles/234ab8ad.html#more">more >></a>
-        
-      
-
-      <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 start -->
-      
-
-  <div class="declare" hidden="hidden"></div>
-
-
-      <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 end -->
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/articles/234ab8ad.html">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-<!-- laibili评论系统 -->
-
-
-
-
-
-
-  
     <article id="post-Spring-IOC细节" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1248,9 +729,106 @@
 
 
   
+    <article id="post-Java反射" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/articles/adc18de0.html">Java反射</a>
+    </h1>
+  
+
+        
+        <a href="/articles/adc18de0.html" class="archive-article-date">
+  	<time datetime="2017-03-21T11:14:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>当应用程序主动使用某个类时，系统会通过加载、连接、初始化3个步骤来对该类进行初始化。类的加载是指将类的class文件读入内存，并为之创建一个java.lang.Class对象</p>
+<h2 id="类初始化"><a href="#类初始化" class="headerlink" title="类初始化"></a>类初始化</h2>
+        
+          <a class="article-more-a" href="/articles/adc18de0.html#more">more >></a>
+        
+      
+
+      <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 start -->
+      
+
+  <div class="declare" hidden="hidden"></div>
+
+
+      <!-- add by xiaopeng@20181018 for 文章末尾添加版权声明 end -->
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">反射</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">JavaSE</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/articles/adc18de0.html">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+<!-- laibili评论系统 -->
+
+
+
+
+
+
+  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
     </nav>
   
 
@@ -1362,10 +940,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ActiveMQ</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">反射</a>
               </li>
              
@@ -1379,10 +953,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1402,11 +972,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
             
             <div class="clearfix"></div>
@@ -1531,5 +1105,5 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
 
 </div>
   </div>
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":100,"height":200},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>
